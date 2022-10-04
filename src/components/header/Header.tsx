@@ -1,12 +1,18 @@
+import { NavLink } from 'react-router-dom';
+import './Header.styles.scss'
+
 const Header = () => {
 	return (
-		<ul>
-			<li>Home</li>
-			<li>Chess</li>
-			<li>Login</li>
-			<li>Register</li>
-		</ul>
+		<header>
+			<ul>
+				<li><NavLink to={'/'}>Home</NavLink></li>
+				<li><NavLink to={'chess'}>Chess</NavLink></li>
+				<li><NavLink to={'login'}>Login</NavLink></li>
+				<li><NavLink to={'register'}>Register</NavLink></li>
+				<li><NavLink to={'about'}>About</NavLink></li>
+			</ul>
+		</header>
 	);
-}
+};
 
 export default Header;

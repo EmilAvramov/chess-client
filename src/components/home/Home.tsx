@@ -1,7 +1,11 @@
-const Home = () => {
-    return (
-        <div>Home works!</div>
-    )
-}
+import './Home.styles.scss';
 
-export default Home
+const Home = () => {
+	return (
+		<main>
+			<div>Home works!</div>
+		</main>
+	);
+};
+
+export default Home;

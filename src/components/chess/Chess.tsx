@@ -1,7 +1,9 @@
 const Chess = () => {
-    return (
-        <div>Chess works!</div>
-    )
+	return (
+		<main>
+			<div>Chess works!</div>
+		</main>
+	);
 }
 
 export default Chess

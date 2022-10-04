@@ -1,14 +1,18 @@
-const Footer = () => {
-    return (
-        <div>
-            <p>Back to Top</p>
-            <ul>
-                <li>Contacts</li>
-                <li>Support</li>
-                <li>Placeholder</li>
-            </ul>
-        </div>
-    )
-}
+import './Footer.styles.scss';
 
-export default Footer
+const Footer = () => {
+	return (
+		<footer>
+			<div>
+				<p>Back to Top</p>
+				<ul>
+					<li>Contacts</li>
+					<li>Support</li>
+					<li>Placeholder</li>
+				</ul>
+			</div>
+		</footer>
+	);
+};
+
+export default Footer;

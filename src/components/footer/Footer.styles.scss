@@ -1,0 +1,20 @@
+footer {
+	position: relative;
+	bottom: 0;
+    width: 90%;
+    margin: 0 auto;
+    background-color: whitesmoke;
+
+	div {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		p {
+			font-size: 30px;
+		}
+
+		ul {
+			font-size: 20px;
+		}
+	}
+}
