@@ -1,7 +1,9 @@
 const Register = () => {
-    return (
-        <div>Register works!</div>
-    )
-}
+	return (
+		<main>
+			<div>Register works!</div>
+		</main>
+	);
+};
 
-export default Register
+export default Register;
