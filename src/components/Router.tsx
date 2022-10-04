@@ -4,9 +4,9 @@ import Login from './login/Login';
 import Register from './register/Register';
 import Chess from './chess/Chess';
 
-import Footer from './footer/Footer';
 import Header from './header/Header';
 import Home from './home/Home';
+import Footer from './footer/Footer';
 
 const Router = () => {
 	return (
