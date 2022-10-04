@@ -84,13 +84,6 @@ const Register = () => {
 				/>
 				{errors.rePass && <p>{errors.rePass.message}</p>}
 				<button className={styles['register__btn']}>Register</button>
-				<button
-					onClick={(e) => {
-						e.preventDefault();
-					}}
-				>
-					Register with Google
-				</button>
 				<div>
 					Already have an account? <Link to='/login'>Login</Link> now.
 				</div>

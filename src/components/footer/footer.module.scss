@@ -1,19 +1,20 @@
-footer {
+.footer__wrapper {
 	position: relative;
 	bottom: 0;
     width: 90%;
     margin: 0 auto;
     background-color: whitesmoke;
 
-	div {
+	.footer__container {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		p {
+		
+		.footer__arrow {
 			font-size: 30px;
 		}
 
-		ul {
+		.footer__list {
 			font-size: 20px;
 		}
 	}

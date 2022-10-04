@@ -1,4 +1,4 @@
-header {
+.header__wrapper {
     height: 8vh;
     position: sticky;
     top: 0;
@@ -6,7 +6,7 @@ header {
     margin: 0 auto;
     background-color: whitesmoke;
 
-    ul {
+    .header__list {
         width: 100%;
         height: 100%;
         display: flex;

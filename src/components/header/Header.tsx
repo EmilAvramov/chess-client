@@ -3,8 +3,8 @@ import styles from './header.module.scss'
 
 const Header = () => {
 	return (
-		<header>
-			<ul>
+		<header className={styles['header__wrapper']}>
+			<ul className={styles['header__list']}>
 				<li><NavLink to={'/'}>Home</NavLink></li>
 				<li><NavLink to={'chess'}>Chess</NavLink></li>
 				<li><NavLink to={'login'}>Login</NavLink></li>
