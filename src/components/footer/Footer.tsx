@@ -1,4 +1,4 @@
-function Footer() {
+const Footer = () => {
     return (
         <div>
             <p>Back to Top</p>

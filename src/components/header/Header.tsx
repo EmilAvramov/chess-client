@@ -1,4 +1,4 @@
-function Header() {
+const Header = () => {
 	return (
 		<ul>
 			<li>Home</li>
