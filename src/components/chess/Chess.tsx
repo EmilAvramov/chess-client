@@ -1,3 +1,5 @@
+import styles from './chess.module.scss'
+
 const Chess = () => {
 	return (
 		<main>
