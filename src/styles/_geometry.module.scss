@@ -26,3 +26,10 @@
 	grid-template-columns: repeat($pieces, $size);
 	gap: $gap;
 }
+
+@mixin adjust-page-layout() {
+	min-height: 82.5vh;
+	margin: 0 auto;
+	width: 90%;
+	@include flex($content-align: center, $item-align: center);
+}

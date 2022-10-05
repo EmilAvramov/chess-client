@@ -2,11 +2,8 @@
 @use '../../styles//text.module' as text;
 
 .login__wrapper {
-	width: 90%;
-	margin: 0 auto;
+	@include geo.adjust-page-layout();
 	background-color: antiquewhite;
-	min-height: 80vh;
-	@include geo.flex($content-align: center, $item-align: center);
 
 	.login__form {
 		@include geo.flex(

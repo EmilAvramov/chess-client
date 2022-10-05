@@ -1,11 +1,11 @@
-import styles from './faq.module.scss'
+import styles from './faq.module.scss';
 
 const FAQ = () => {
 	return (
-		<main>
+		<main className={styles['faq__wrapper']}>
 			<div>About works!</div>
 		</main>
 	);
-}
+};
 
-export default FAQ
+export default FAQ;

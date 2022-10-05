@@ -1,11 +1,11 @@
-import styles from './chess.module.scss'
+import styles from './chess.module.scss';
 
 const Chess = () => {
 	return (
-		<main>
+		<main className={styles['chess__wrapper']}>
 			<div>Chess works!</div>
 		</main>
 	);
-}
+};
 
-export default Chess
+export default Chess;
