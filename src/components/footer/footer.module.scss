@@ -1,3 +1,6 @@
+@use '../../styles/_geometry.module' as geo;
+@use '../../styles//text.module' as text;
+
 .footer__wrapper {
 	position: relative;
 	bottom: 0;

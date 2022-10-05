@@ -4,12 +4,17 @@ const Footer = () => {
 	return (
 		<footer className={styles['footer__wrapper']}>
 			<div className={styles['footer__container']}>
-				<p className={styles['footer__arrow']}>Back to Top</p>
-				<ul className={styles['footer__list']}>
-					<li>Contacts</li>
-					<li>Support</li>
-					<li>Placeholder</li>
-				</ul>
+				<div className={styles['footer__arrow']}>
+					<i className='fa-solid fa-angles-up'></i>
+				</div>
+				<nav>
+					<h6>Sitemap</h6>
+					<ul className={styles['footer__list']}>
+						<li>Home</li>
+						<li>Chess</li>
+						<li>FAQ</li>
+					</ul>
+				</nav>
 			</div>
 		</footer>
 	);

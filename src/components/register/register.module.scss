@@ -1,9 +1,50 @@
+@use '../../styles/_geometry.module' as geo;
+@use '../../styles//text.module' as text;
+
 main {
-    width: 90%;
-    margin: 0 auto;
-    background-color: antiquewhite;
-    min-height: 80vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	width: 90%;
+	margin: 0 auto;
+	background-color: antiquewhite;
+	min-height: 80vh;
+	@include geo.flex($content-align: center, $item-align: center);
+
+	.register__form {
+		@include geo.flex(
+			$direction: column,
+			$content-align: center,
+			$item-align: center,
+			$gap: 10px
+		);
+
+		.register__form_input {
+			width: 100%;
+			padding: 5px 10px;
+			@include text.adjust-text($size: 16px);
+			border-radius: 5px;
+		}
+
+		.register__form_error {
+			@include text.adjust-text($size: 16px);
+			color: red;
+		}
+
+		.register__form_button {
+			width: 110%;
+			padding: 5px 10px;
+			border: 1px solid black;
+			border-radius: 5px;
+			@include text.adjust-text($size: 16px);
+		}
+
+		.register__form_sub {
+			@include geo.flex(
+				$content-align: center,
+				$item-align: center,
+				$gap: 10px
+			);
+			.register__form_link {
+				@include text.format-link($color: red);
+			}
+		}
+	}
 }

@@ -1,9 +1,10 @@
-main {
-    width: 90%;
-    margin: 0 auto;
-    background-color: antiquewhite;
-    min-height: 80vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+@use '../../styles/_geometry.module' as geo;
+@use '../../styles//text.module' as text;
+
+.home__wrapper {
+	width: 90%;
+	margin: 0 auto;
+	background-color: antiquewhite;
+	min-height: 82.5vh;
+	@include geo.flex($content-align: center, $item-align: center);
 }

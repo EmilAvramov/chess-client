@@ -40,10 +40,10 @@ const Header = () => {
 					</li>
 					<li className={styles['header__list_item']}>
 						<NavLink
-							to={'about'}
+							to={'faq'}
 							className={styles['header__list_nav']}
 						>
-							About
+							FAQ
 						</NavLink>
 					</li>
 				</ul>

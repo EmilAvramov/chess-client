@@ -53,7 +53,10 @@ const Register = () => {
 
 	return (
 		<main className={styles['register__wrapper']}>
-			<form onSubmit={handleSubmit(submitData)}>
+			<form
+				onSubmit={handleSubmit(submitData)}
+				className={styles['register__form']}
+			>
 				<input
 					{...register('name', {
 						required: {
@@ -63,29 +66,56 @@ const Register = () => {
 					})}
 					type='text'
 					placeholder='Full Name'
+					className={styles['register__form_input']}
 				/>
-				{errors.name && <p>{errors.name.message}</p>}
+				{errors.name && (
+					<p className={styles['register__form_error']}>
+						{errors.name.message}
+					</p>
+				)}
 				<input
 					{...register('email')}
 					type='text'
 					placeholder='E-mail Address'
+					className={styles['register__form_input']}
 				/>
-				{errors.email && <p>{errors.email.message}</p>}
+				{errors.email && (
+					<p className={styles['register__form_error']}>
+						{errors.email.message}
+					</p>
+				)}
 				<input
 					{...register('password')}
 					type='password'
 					placeholder='Password'
+					className={styles['register__form_input']}
 				/>
-				{errors.password && <p>{errors.password.message}</p>}
+				{errors.password && (
+					<p className={styles['register__form_error']}>
+						{errors.password.message}
+					</p>
+				)}
 				<input
 					{...register('rePass')}
 					type='password'
 					placeholder='Confirm Password'
+					className={styles['register__form_input']}
 				/>
-				{errors.rePass && <p>{errors.rePass.message}</p>}
-				<button className={styles['register__btn']}>Register</button>
-				<div>
-					Already have an account? <Link to='/login'>Login</Link> now.
+				{errors.rePass && (
+					<p className={styles['register__form_error']}>
+						{errors.rePass.message}
+					</p>
+				)}
+				<button className={styles['register__form_button']}>
+					Register
+				</button>
+				<div className={styles['register__form_sub']}>
+					<p className={styles['register__form_subText']}>
+						Already have an account?
+					</p>
+					<Link to='/login' className={styles['register__form_link']}>
+						Login now.
+					</Link>
 				</div>
 			</form>
 		</main>

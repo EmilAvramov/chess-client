@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import About from './about/About';
+import FAQ from './faq/FAQ';
 import Login from './login/Login';
 import Register from './register/Register';
 import Chess from './chess/Chess';
@@ -15,7 +15,7 @@ const Router = () => {
 			<Routes>
 				<Route path='/' element={<Home />}></Route>
 				<Route path='chess' element={<Chess />}></Route>
-				<Route path='about' element={<About />}></Route>
+				<Route path='faq' element={<FAQ />}></Route>
 				<Route path='login' element={<Login />}></Route>
 				<Route path='register' element={<Register />}></Route>
 			</Routes>
