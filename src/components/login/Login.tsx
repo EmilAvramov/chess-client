@@ -34,23 +34,40 @@ const Login: React.FC = (): JSX.Element => {
 
 	return (
 		<main className={styles['login__wrapper']}>
-			<form onSubmit={handleSubmit(submitForm)}>
+			<form
+				onSubmit={handleSubmit(submitForm)}
+				className={styles['login__form']}
+			>
 				<input
 					{...register('email')}
 					type='text'
 					placeholder='E-mail Address'
+					className={styles['login__form_input']}
 				/>
-				{errors.email && <p>{errors.email.message}</p>}
+				{errors.email && (
+					<p className={styles['login__form_error']}>
+						{errors.email.message}
+					</p>
+				)}
 				<input
 					{...register('password')}
 					type='password'
 					placeholder='Password'
+					className={styles['login__form_input']}
 				/>
-				{errors.password && <p>{errors.password.message}</p>}
-				<button>Login</button>
-				<div>
-					Don't have an account?
-					<Link to='/register'>Register</Link> now.
+				{errors.password && (
+					<p className={styles['login__form_error']}>
+						{errors.password.message}
+					</p>
+				)}
+				<button className={styles['login__form_button']}>Login</button>
+				<div className={styles['login__form_sub']}>
+					<p className={styles['login__form_subText']}>
+						Don't have an account?
+					</p>
+					<Link to='/register' className={styles['login__form_link']}>
+						Register now.
+					</Link>{' '}
 				</div>
 			</form>
 		</main>

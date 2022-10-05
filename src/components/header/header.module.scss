@@ -1,6 +1,6 @@
 @use '../../styles/_geometry.module' as geo;
 @use '../../styles//text.module' as text;
- 
+
 .header__wrapper {
 	height: 8vh;
 	position: sticky;
@@ -8,6 +8,7 @@
 	width: 90%;
 	margin: 0 auto;
 	background-color: whitesmoke;
+    @include geo.flex($content-align: center, $item-align: center);
 
 	.header__list {
 		width: 100%;

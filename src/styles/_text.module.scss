@@ -12,3 +12,17 @@
 		background-color: seashell;
 	}
 }
+
+@mixin adjust-text($size, $style: 400, $align: center) {
+	font-size: $size;
+	font-weight: $style;
+	text-align: $align;
+}
+
+@mixin format-link($color: black) {
+	text-decoration: none;
+	color: $color;
+	&:visited {
+		color: $color;
+	}
+}
