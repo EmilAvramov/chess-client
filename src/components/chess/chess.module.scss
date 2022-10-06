@@ -4,10 +4,22 @@
 .chess__wrapper {
 	@include geo.adjust-page-layout();
 	background-color: antiquewhite;
-}
 
-.board__wrapper {
-	.board__figures {
-		@include geo.grid-repeat-columns(8, 1fr);
+	.board__wrapper {
+		.board__figures {
+			@include geo.grid-repeat-columns(8, 1fr);
+			background: repeating-conic-gradient(
+					rgb(64, 63, 67) 0 90deg,
+					rgb(226, 227, 225) 0 180deg
+				)
+				0 0 / calc(100% / 4) calc(100% / 4);
+
+			border: 3px solid black;
+
+			.square__img {
+				width: 5vw;
+				height: 10vh;
+			}
+		}
 	}
 }

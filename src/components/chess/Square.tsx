@@ -13,8 +13,10 @@ import WKing from '../../assets/w_king.png';
 import WBishop from '../../assets/w_bishop.png';
 import WPawn from '../../assets/w_pawn.png';
 
+import styles from './chess.module.scss';
+
 const Square: FC<ISquare> = ({ position, color, type, col, row }) => {
-	const pawns:any = {
+	const pawns: any = {
 		w: {
 			pawn: WPawn,
 			bishop: WBishop,
@@ -31,13 +33,15 @@ const Square: FC<ISquare> = ({ position, color, type, col, row }) => {
 			knight: BKnight,
 			rook: BRook,
 		},
-		0: 0
+		0: 0,
 	};
 
 	return (
-		<ul>
-			<img src={pawns[color][type]} alt=''/>
-		</ul>
+		<img
+			className={styles['square__img']}
+			src={pawns[color][type]}
+			alt=''
+		/>
 	);
 };
 
