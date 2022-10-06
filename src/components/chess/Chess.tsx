@@ -1,4 +1,5 @@
 import useSocket from '../../hooks/useSocket';
+import Board from './Board';
 import styles from './chess.module.scss';
 
 const Chess = () => {
@@ -6,6 +7,7 @@ const Chess = () => {
 
 	return (
 		<main className={styles['chess__wrapper']}>
+			<Board />
 			<div>
 				<p>Connected: {'' + isConnected}</p>
 				<p>Last pong: {lastPong || '-'}</p>
