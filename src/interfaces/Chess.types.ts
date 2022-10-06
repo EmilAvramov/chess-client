@@ -1,10 +1,10 @@
-export type Square = {
+export interface ISquare {
 	position: number;
 	type: string;
 	color: string;
 	'pos matrix': number[];
-};
+}
 
-export type Board = {
-	data: Square[];
-};
+export interface IBoard {
+	data: ISquare[] | undefined;
+}
