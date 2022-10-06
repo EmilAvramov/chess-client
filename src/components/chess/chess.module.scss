@@ -5,3 +5,9 @@
 	@include geo.adjust-page-layout();
 	background-color: antiquewhite;
 }
+
+.board__wrapper {
+	.board__figures {
+		@include geo.grid-repeat-columns(8, 1fr);
+	}
+}

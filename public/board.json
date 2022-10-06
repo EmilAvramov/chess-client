@@ -1,92 +1,450 @@
 [
     {
-        "position": 1,
-        "type": "Rook",
-        "color": "b",
-        "pos matrix": [
-                 0,
-                 0
-        ]
+             "position": 1,
+             "type": "rook",
+             "color": "b",
+             "row": 0,
+             "col": 0
     },
     {
-        "position": 2,
-        "type": "Knight",
-        "color": "b",
-        "pos matrix": [
-                 0,
-                 1
-        ]
+             "position": 2,
+             "type": "knight",
+             "color": "b",
+             "row": 0,
+             "col": 1
     },
     {
-        "position": 3,
-        "type": "Bishop",
-        "color": "b",
-        "pos matrix": [
-                 0,
-                 2
-        ]
+             "position": 3,
+             "type": "bishop",
+             "color": "b",
+             "row": 0,
+             "col": 2
     },
     {
-        "position": 4,
-        "type": "Queen",
-        "color": "b",
-        "pos matrix": [
-                 0,
-                 3
-        ]
-    }, 
-    {
-        "position": 5,
-        "type": "King",
-        "color": "b",
-        "pos matrix": [
-                 0,
-                 4
-        ]
+             "position": 4,
+             "type": "queen",
+             "color": "b",
+             "row": 0,
+             "col": 3
     },
     {
-        "position": 6,
-        "type": "Bishop",
-        "color": "b",
-        "pos matrix": [
-                 0,
-                 5
-        ]
+             "position": 5,
+             "type": "king",
+             "color": "b",
+             "row": 0,
+             "col": 4
     },
     {
-        "position": 7,
-        "type": "Knight",
-        "color": "b",
-        "pos matrix": [
-                 0,
-                 6
-        ]
+             "position": 6,
+             "type": "bishop",
+             "color": "b",
+             "row": 0,
+             "col": 5
     },
     {
-        "position": 8,
-        "type": "Rook",
-        "color": "b",
-        "pos matrix": [
-                 0,
-                 7
-        ]
+             "position": 7,
+             "type": "knight",
+             "color": "b",
+             "row": 0,
+             "col": 6
     },
     {
-        "position": 9, 
-        "type": "Pawn",
-        "color": "b",
-        "pos matrix": [
-                 1,
-                 0
-        ]
+             "position": 8,
+             "type": "rook",
+             "color": "b",
+             "row": 0,
+             "col": 7
     },
     {
-        "position": 10, 
-        "type": "Pawn",
-        "color": "b",
-        "pos matrix": [
-                 1,
-                 1
-        ]
+             "position": 9,
+             "type": "pawn",
+             "color": "b",
+             "row": 1,
+             "col": 0
+    },
+    {
+             "position": 10,
+             "type": "pawn",
+             "color": "b",
+             "row": 1,
+             "col": 1
+    },
+    {
+             "position": 11,
+             "type": "pawn",
+             "color": "b",
+             "row": 1,
+             "col": 2
+    },
+    {
+             "position": 12,
+             "type": "pawn",
+             "color": "b",
+             "row": 1,
+             "col": 3
+    },
+    {
+             "position": 13,
+             "type": "pawn",
+             "color": "b",
+             "row": 1,
+             "col": 4
+    },
+    {
+             "position": 14,
+             "type": "pawn",
+             "color": "b",
+             "row": 1,
+             "col": 5
+    },
+    {
+             "position": 15,
+             "type": "pawn",
+             "color": "b",
+             "row": 1,
+             "col": 6
+    },
+    {
+             "position": 16,
+             "type": "pawn",
+             "color": "b",
+             "row": 1,
+             "col": 7
+    },
+    {
+             "position": 17,
+             "type": 0,
+             "color": 0,
+             "row": 2,
+             "col": 0
+    },
+    {
+             "position": 18,
+             "type": 0,
+             "color": 0,
+             "row": 2,
+             "col": 1
+    },
+    {
+             "position": 19,
+             "type": 0,
+             "color": 0,
+             "row": 2,
+             "col": 2
+    },
+    {
+             "position": 20,
+             "type": 0,
+             "color": 0,
+             "row": 2,
+             "col": 3
+    },
+    {
+             "position": 21,
+             "type": 0,
+             "color": 0,
+             "row": 2,
+             "col": 4
+    },
+    {
+             "position": 22,
+             "type": 0,
+             "color": 0,
+             "row": 2,
+             "col": 5
+    },
+    {
+             "position": 23,
+             "type": 0,
+             "color": 0,
+             "row": 2,
+             "col": 6
+    },
+    {
+             "position": 24,
+             "type": 0,
+             "color": 0,
+             "row": 2,
+             "col": 7
+    },
+    {
+             "position": 25,
+             "type": 0,
+             "color": 0,
+             "row": 3,
+             "col": 0
+    },
+    {
+             "position": 26,
+             "type": 0,
+             "color": 0,
+             "row": 3,
+             "col": 1
+    },
+    {
+             "position": 27,
+             "type": 0,
+             "color": 0,
+             "row": 3,
+             "col": 2
+    },
+    {
+             "position": 28,
+             "type": 0,
+             "color": 0,
+             "row": 3,
+             "col": 3
+    },
+    {
+             "position": 29,
+             "type": 0,
+             "color": 0,
+             "row": 3,
+             "col": 4
+    },
+    {
+             "position": 30,
+             "type": 0,
+             "color": 0,
+             "row": 3,
+             "col": 5
+    },
+    {
+             "position": 31,
+             "type": 0,
+             "color": 0,
+             "row": 3,
+             "col": 6
+    },
+    {
+             "position": 32,
+             "type": 0,
+             "color": 0,
+             "row": 3,
+             "col": 7
+    },
+    {
+             "position": 33,
+             "type": 0,
+             "color": 0,
+             "row": 4,
+             "col": 0
+    },
+    {
+             "position": 34,
+             "type": 0,
+             "color": 0,
+             "row": 4,
+             "col": 1
+    },
+    {
+             "position": 35,
+             "type": 0,
+             "color": 0,
+             "row": 4,
+             "col": 2
+    },
+    {
+             "position": 36,
+             "type": 0,
+             "color": 0,
+             "row": 4,
+             "col": 3
+    },
+    {
+             "position": 37,
+             "type": 0,
+             "color": 0,
+             "row": 4,
+             "col": 4
+    },
+    {
+             "position": 38,
+             "type": 0,
+             "color": 0,
+             "row": 4,
+             "col": 5
+    },
+    {
+             "position": 39,
+             "type": 0,
+             "color": 0,
+             "row": 4,
+             "col": 6
+    },
+    {
+             "position": 40,
+             "type": 0,
+             "color": 0,
+             "row": 4,
+             "col": 7
+    },
+    {
+             "position": 41,
+             "type": 0,
+             "color": 0,
+             "row": 5,
+             "col": 0
+    },
+    {
+             "position": 42,
+             "type": 0,
+             "color": 0,
+             "row": 5,
+             "col": 1
+    },
+    {
+             "position": 43,
+             "type": 0,
+             "color": 0,
+             "row": 5,
+             "col": 2
+    },
+    {
+             "position": 44,
+             "type": 0,
+             "color": 0,
+             "row": 5,
+             "col": 3
+    },
+    {
+             "position": 45,
+             "type": 0,
+             "color": 0,
+             "row": 5,
+             "col": 4
+    },
+    {
+             "position": 46,
+             "type": 0,
+             "color": 0,
+             "row": 5,
+             "col": 5
+    },
+    {
+             "position": 47,
+             "type": 0,
+             "color": 0,
+             "row": 5,
+             "col": 6
+    },
+    {
+             "position": 48,
+             "type": 0,
+             "color": 0,
+             "row": 5,
+             "col": 7
+    },
+    {
+             "position": 49,
+             "type": "pawn",
+             "color": "w",
+             "row": 6,
+             "col": 0
+    },
+    {
+             "position": 50,
+             "type": "pawn",
+             "color": "w",
+             "row": 6,
+             "col": 1
+    },
+    {
+             "position": 51,
+             "type": "pawn",
+             "color": "w",
+             "row": 6,
+             "col": 2
+    },
+    {
+             "position": 52,
+             "type": "pawn",
+             "color": "w",
+             "row": 6,
+             "col": 3
+    },
+    {
+             "position": 53,
+             "type": "pawn",
+             "color": "w",
+             "row": 6,
+             "col": 4
+    },
+    {
+             "position": 54,
+             "type": "pawn",
+             "color": "w",
+             "row": 6,
+             "col": 5
+    },
+    {
+             "position": 55,
+             "type": "pawn",
+             "color": "w",
+             "row": 6,
+             "col": 6
+    },
+    {
+             "position": 56,
+             "type": "pawn",
+             "color": "w",
+             "row": 6,
+             "col": 7
+    },
+    {
+             "position": 57,
+             "type": "rook",
+             "color": "w",
+             "row": 7,
+             "col": 0
+    },
+    {
+             "position": 58,
+             "type": "knight",
+             "color": "w",
+             "row": 7,
+             "col": 1
+    },
+    {
+             "position": 59,
+             "type": "bishop",
+             "color": "w",
+             "row": 7,
+             "col": 2
+    },
+    {
+             "position": 60,
+             "type": "queen",
+             "color": "w",
+             "row": 7,
+             "col": 3
+    },
+    {
+             "position": 61,
+             "type": "king",
+             "color": "w",
+             "row": 7,
+             "col": 4
+    },
+    {
+             "position": 62,
+             "type": "bishop",
+             "color": "w",
+             "row": 7,
+             "col": 5
+    },
+    {
+             "position": 63,
+             "type": "knight",
+             "color": "w",
+             "row": 7,
+             "col": 6
+    },
+    {
+             "position": 64,
+             "type": "rook",
+             "color": "w",
+             "row": 7,
+             "col": 7
     }
 ]
