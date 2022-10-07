@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import styles from './login.module.scss';
-import { emailPattern } from '../../helpers/patterns';
+import { emailPattern } from '../../helpers/misc/patterns';
 
 type FormValues = {
 	email: string;

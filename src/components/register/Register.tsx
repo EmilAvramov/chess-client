@@ -2,7 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
-import { emailPattern, passwordPattern } from '../../helpers/patterns';
+import { emailPattern, passwordPattern } from '../../helpers/misc/patterns';
 
 import styles from './register.module.scss';
 
