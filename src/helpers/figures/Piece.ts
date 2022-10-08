@@ -1,9 +1,9 @@
 export default class Piece {
 	public player: number;
-	public icon: string | null;
+	public iconStyle: string | null;
 
-	constructor(player: number, icon: string) {
+	constructor(player: number, url: string) {
 		this.player = player;
-		this.icon = icon;
+		this.iconStyle = url;
 	}
 }
