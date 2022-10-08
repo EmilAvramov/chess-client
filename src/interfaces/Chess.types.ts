@@ -6,9 +6,12 @@ import Queen from '../helpers/figures/Queen';
 import Rook from '../helpers/figures/Rook';
 
 export interface ISquare {
+	select: (pos: number) => void;
+	move: (pos: number) => void;
 	position: number;
 	type: string | number;
 	color: string | number;
+	shade: number;
 	row: number;
 	col: number;
 }
@@ -18,7 +21,9 @@ export interface IBoard {
 }
 
 export interface BoardObject {
-	[key: string | number]: {
-		[key: string]: Pawn | Bishop | Queen | King | Knight | Rook;
-	} | undefined;
+	[key: string | number]:
+		| {
+				[key: string]: Pawn | Bishop | Queen | King | Knight | Rook;
+		  }
+		| undefined;
 }

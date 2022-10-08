@@ -9,7 +9,14 @@ import Knight from '../../helpers/figures/Knight';
 import Rook from '../../helpers/figures/Rook';
 import styles from './chess.module.scss';
 
-const Square: FC<ISquare> = ({ position, color, type, col, row }) => {
+const Square: FC<ISquare> = ({
+	position,
+	color,
+	type,
+	select,
+	move,
+	shade,
+}) => {
 	const pawns: BoardObject = {
 		w: {
 			pawn: new Pawn(1),
@@ -30,20 +37,28 @@ const Square: FC<ISquare> = ({ position, color, type, col, row }) => {
 		0: undefined,
 	};
 
-	const handleClick = (pos: number) => {
-		
-	};
-
 	return (
 		<>
 			{pawns[color] !== undefined ? (
 				<button
 					className={styles['square__icon']}
-					style={{
-						backgroundImage:
-							"url('" + pawns[color]?.[type].iconStyle + "')",
-					}}
-					onClick={() => handleClick(position)}
+					style={
+						shade !== position
+							? {
+									backgroundImage:
+										"url('" +
+										pawns[color]?.[type].iconStyle +
+										"')",
+							  }
+							: {
+									backgroundColor: 'lightblue',
+									backgroundImage:
+										"url('" +
+										pawns[color]?.[type].iconStyle +
+										"')",
+							  }
+					}
+					onClick={() => select(position)}
 				/>
 			) : (
 				<button className={styles['square__icon']} />
