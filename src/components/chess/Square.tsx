@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { BoardObject, ISquare } from '../../interfaces/Chess.types';
 
 import Pawn from '../../helpers/figures/Pawn';
@@ -13,10 +13,16 @@ const Square: FC<ISquare> = ({
 	position,
 	color,
 	type,
+	col,
+	row,
 	select,
 	move,
 	shade,
 }) => {
+	const [selected, setSelected] = useState(false);
+
+	const toggleSelected = () => setSelected((selected) => !selected);
+
 	const pawns: BoardObject = {
 		w: {
 			pawn: new Pawn(1),
@@ -41,7 +47,11 @@ const Square: FC<ISquare> = ({
 		<>
 			{pawns[color] !== undefined ? (
 				<button
-					className={styles['square__icon']}
+					className={
+						!selected
+							? styles['square__icon']
+							: `${styles['square__icon']} ${styles['square__icon_selected']}`
+					}
 					style={
 						shade !== position
 							? {
@@ -58,10 +68,25 @@ const Square: FC<ISquare> = ({
 										"')",
 							  }
 					}
-					onClick={() => select(position)}
+					onMouseDown={() => {
+						toggleSelected();
+						select(position, col, row);
+					}}
+					onMouseUp={() => move(position, col, row)}
 				/>
 			) : (
-				<button className={styles['square__icon']} />
+				<button
+					className={
+						!selected
+							? styles['square__icon']
+							: `${styles['square__icon']} ${styles['square__icon_selected']}`
+					}
+					onMouseDown={() => {
+						toggleSelected();
+						select(position, col, row);
+					}}
+					onMouseUp={() => move(position, col, row)}
+				/>
 			)}
 		</>
 	);

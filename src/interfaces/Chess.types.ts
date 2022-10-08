@@ -6,8 +6,8 @@ import Queen from '../helpers/figures/Queen';
 import Rook from '../helpers/figures/Rook';
 
 export interface ISquare {
-	select: (pos: number) => void;
-	move: (pos: number) => void;
+	select: (pos: number, col: number, row: number) => void;
+	move: (pos: number, col: number, row: number) => void;
 	position: number;
 	type: string | number;
 	color: string | number;
