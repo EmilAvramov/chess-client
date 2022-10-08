@@ -11,7 +11,7 @@ export interface ISquare {
 	position: number;
 	type: string | number;
 	color: string | number;
-	shade: number;
+	target: number;
 	row: number;
 	col: number;
 }

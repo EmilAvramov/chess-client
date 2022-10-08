@@ -17,7 +17,7 @@ const Square: FC<ISquare> = ({
 	row,
 	select,
 	move,
-	shade,
+	target,
 }) => {
 	const [selected, setSelected] = useState(false);
 
@@ -53,7 +53,7 @@ const Square: FC<ISquare> = ({
 							: `${styles['square__icon']} ${styles['square__icon_selected']}`
 					}
 					style={
-						shade !== position
+						target !== position
 							? {
 									backgroundImage:
 										"url('" +
@@ -72,7 +72,10 @@ const Square: FC<ISquare> = ({
 						toggleSelected();
 						select(position, col, row);
 					}}
-					onMouseUp={() => move(position, col, row)}
+					onMouseUp={() => {
+						toggleSelected();
+						move(position, col, row);
+					}}
 				/>
 			) : (
 				<button
@@ -85,7 +88,12 @@ const Square: FC<ISquare> = ({
 						toggleSelected();
 						select(position, col, row);
 					}}
-					onMouseUp={() => move(position, col, row)}
+					onMouseUp={() => {
+						if (target === position) {
+							toggleSelected();
+						}
+						move(position, col, row);
+					}}
 				/>
 			)}
 		</>
