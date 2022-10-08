@@ -1,10 +1,12 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { IBoard } from '../../interfaces/Chess.types';
 import Square from './Square';
 
 import styles from './chess.module.scss';
 
 const Board: FC<IBoard> = ({ data }) => {
+	const [selected, setSelected] = useState(0)
+
 	const squares = data?.map((x: any) => <Square key={x.position} {...x} />);
 
 	return (

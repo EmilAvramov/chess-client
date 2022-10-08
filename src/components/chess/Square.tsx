@@ -27,22 +27,26 @@ const Square: FC<ISquare> = ({ position, color, type, col, row }) => {
 			knight: new Knight(2),
 			rook: new Rook(2),
 		},
+		0: undefined,
+	};
+
+	const handleClick = (pos: number) => {
+		
 	};
 
 	return (
 		<>
-			{color ? (
-				<img
+			{pawns[color] !== undefined ? (
+				<button
 					className={styles['square__icon']}
-					src={pawns[color][type].iconStyle}
-					alt=''
+					style={{
+						backgroundImage:
+							"url('" + pawns[color]?.[type].iconStyle + "')",
+					}}
+					onClick={() => handleClick(position)}
 				/>
 			) : (
-				<img
-					className={styles['square__icon']}
-					src={pawns[color][type].iconStyle}
-					alt=''
-				/>
+				<button className={styles['square__icon']} />
 			)}
 		</>
 	);
