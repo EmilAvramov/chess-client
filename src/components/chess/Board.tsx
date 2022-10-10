@@ -1,8 +1,8 @@
 import { FC, useState } from 'react';
-import { IBoard, ISquare } from '../../@types/Chess';
 import Square from './Square';
 
 import styles from './chess.module.scss';
+import { IBoard, ISquare } from '@board-types';
 
 const Board: FC<IBoard> = ({ data }) => {
 	const [move, setMove] = useState(0);

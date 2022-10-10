@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { BoardObject, ISquare } from '../../@types/Chess';
+import { useDrag } from 'react-dnd';
 
 import Pawn from '../../helpers/figures/Pawn';
 import Bishop from '../../helpers/figures/Bishop';
@@ -7,9 +7,9 @@ import Queen from '../../helpers/figures/Queen';
 import King from '../../helpers/figures/King';
 import Knight from '../../helpers/figures/Knight';
 import Rook from '../../helpers/figures/Rook';
-import { IFigureTypes } from '../../@types/Chess';
 import styles from './chess.module.scss';
-import { useDrag, useDrop } from 'react-dnd';
+
+import { ISquare, IBoardObject, IFigureTypes } from '@board-types';
 
 const Square: FC<ISquare> = ({
 	position,
@@ -25,7 +25,7 @@ const Square: FC<ISquare> = ({
 
 	const toggleSelected = () => setSelected((selected) => !selected);
 
-	const pawns: BoardObject = {
+	const pawns: IBoardObject = {
 		w: {
 			pawn: new Pawn(1),
 			bishop: new Bishop(1),
@@ -45,22 +45,19 @@ const Square: FC<ISquare> = ({
 		0: undefined,
 	};
 
-	const [{ canDrop }, drop] = useDrop(
-		() => ({
-			accept: 'knight',
-			collect: (monitor) => ({
-				canDrop: !!monitor.canDrop(),
-			}),
+	const [{ isDragging }, drag] = useDrag(() => ({
+		type: IFigureTypes.KNIGHT,
+		collect: (monitor) => ({
+			isDragging: !!monitor.isDragging(),
 		}),
-		[]
-	);
+	}));
 
 	return (
 		<>
 			{pawns[color] !== undefined ? (
 				<button
 					className={
-						!selected
+						!isDragging
 							? styles['square__icon']
 							: `${styles['square__icon']} ${styles['square__icon_selected']}`
 					}
@@ -92,7 +89,7 @@ const Square: FC<ISquare> = ({
 			) : (
 				<button
 					className={
-						!selected
+						!isDragging
 							? styles['square__icon']
 							: `${styles['square__icon']} ${styles['square__icon_selected']}`
 					}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import { DnDChildren } from '../@types/Context';
+import { DnDChildren } from '@context-types';
 
 export const DnDProvider: React.FC<DnDChildren> = ({ children }) => {
 	return <DndProvider backend={HTML5Backend}>{children}</DndProvider>;

@@ -1,6 +1,6 @@
 import axios from 'axios';
+import { IBoard } from '@board-types';
 import { useEffect, useState } from 'react';
-import { IBoard } from '../@types/Chess';
 
 const useChessData = () => {
 	const [board, setBoard] = useState<IBoard>();
