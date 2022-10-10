@@ -4,6 +4,6 @@ import WKnight from '../../assets/w_knight.png';
 
 export default class Knight extends Piece {
 	constructor(player: number) {
-		super(player, player === 1 ? WKnight : BKnight);
+		super(player, player === 1 ? WKnight : BKnight, 'knight');
 	}
 }

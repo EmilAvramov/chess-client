@@ -4,6 +4,6 @@ import WRook from '../../assets/w_rook.png';
 
 export default class Rook extends Piece {
 	constructor(player: number) {
-		super(player, player === 1 ? WRook : BRook);
+		super(player, player === 1 ? WRook : BRook, 'rook');
 	}
 }

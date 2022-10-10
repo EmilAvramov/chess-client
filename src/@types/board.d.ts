@@ -28,12 +28,4 @@ declare module '@board-types' {
 			  }
 			| undefined;
 	}
-	export enum IFigureTypes {
-		KNIGHT = 'knight',
-		KING = 'king',
-		QUEEN = 'queen',
-		PAWN = 'pawn',
-		ROOK = 'rook',
-		BISHOP = 'bishop',
-	}
 }

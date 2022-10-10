@@ -4,6 +4,6 @@ import WBishop from '../../assets/w_bishop.png';
 
 export default class Bishop extends Piece {
 	constructor(player: number) {
-		super(player, player === 1 ? WBishop : BBishop);
+		super(player, player === 1 ? WBishop : BBishop, 'bishop');
 	}
 }

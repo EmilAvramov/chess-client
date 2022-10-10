@@ -9,7 +9,7 @@ import Knight from '../../helpers/figures/Knight';
 import Rook from '../../helpers/figures/Rook';
 import styles from './chess.module.scss';
 
-import { ISquare, IBoardObject, IFigureTypes } from '@board-types';
+import { ISquare, IBoardObject } from '@board-types';
 
 const Square: FC<ISquare> = ({
 	position,
@@ -45,17 +45,28 @@ const Square: FC<ISquare> = ({
 		0: undefined,
 	};
 
-	const [{ isDragging }, drag] = useDrag(() => ({
-		type: IFigureTypes.KNIGHT,
-		collect: (monitor) => ({
-			isDragging: !!monitor.isDragging(),
-		}),
-	}));
+	const [{ isDragging }, drag] = useDrag(() => {
+		if (pawns[color]?.[type]) {
+			return {
+				type: pawns[color]?.[type].name,
+				collect: (monitor) => ({
+					isDragging: !!monitor.isDragging(),
+				}),
+			};
+		}
+		return {
+			type: 'empty',
+			collect: (monitor) => ({
+				isDragging: !!monitor.isDragging(),
+			}),
+		};
+	});
 
 	return (
 		<>
 			{pawns[color] !== undefined ? (
 				<button
+					ref={drag}
 					className={
 						!isDragging
 							? styles['square__icon']
@@ -88,6 +99,7 @@ const Square: FC<ISquare> = ({
 				/>
 			) : (
 				<button
+					ref={drag}
 					className={
 						!isDragging
 							? styles['square__icon']
