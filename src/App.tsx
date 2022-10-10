@@ -1,12 +1,15 @@
 import { BrowserRouter } from 'react-router-dom';
 import Router from './components/Router';
+import { DnDProvider } from './contexts/DnD.context';
 
-const App = ()  => {
+const App = () => {
 	return (
 		<BrowserRouter>
-			<Router></Router>
+			<DnDProvider>
+				<Router />
+			</DnDProvider>
 		</BrowserRouter>
 	);
-}
+};
 
 export default App;

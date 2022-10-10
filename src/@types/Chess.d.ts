@@ -27,3 +27,12 @@ export interface BoardObject {
 		  }
 		| undefined;
 }
+
+export const IFigureTypes = {
+	KNIGHT: 'knight',
+	KING: King,
+	QUEEN: Queen,
+	PAWN: Pawn,
+	ROOK: Rook,
+	BISHOP: Bishop,
+};

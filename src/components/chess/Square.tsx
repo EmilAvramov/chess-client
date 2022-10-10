@@ -7,7 +7,9 @@ import Queen from '../../helpers/figures/Queen';
 import King from '../../helpers/figures/King';
 import Knight from '../../helpers/figures/Knight';
 import Rook from '../../helpers/figures/Rook';
+import { IFigureTypes } from '../../@types/Chess';
 import styles from './chess.module.scss';
+import { useDrag, useDrop } from 'react-dnd';
 
 const Square: FC<ISquare> = ({
 	position,
@@ -42,6 +44,16 @@ const Square: FC<ISquare> = ({
 		},
 		0: undefined,
 	};
+
+	const [{ canDrop }, drop] = useDrop(
+		() => ({
+			accept: 'knight',
+			collect: (monitor) => ({
+				canDrop: !!monitor.canDrop(),
+			}),
+		}),
+		[]
+	);
 
 	return (
 		<>
