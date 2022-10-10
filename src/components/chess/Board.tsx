@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { IBoard, ISquare } from '../../interfaces/Chess.types';
+import { IBoard, ISquare } from '../../@types/Chess';
 import Square from './Square';
 
 import styles from './chess.module.scss';

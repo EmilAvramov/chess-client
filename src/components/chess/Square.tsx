@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { BoardObject, ISquare } from '../../interfaces/Chess.types';
+import { BoardObject, ISquare } from '../../@types/Chess';
 
 import Pawn from '../../helpers/figures/Pawn';
 import Bishop from '../../helpers/figures/Bishop';

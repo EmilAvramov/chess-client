@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { IBoard } from '../interfaces/Chess.types';
+import { IBoard } from '../@types/Chess';
 
 const useChessData = () => {
 	const [board, setBoard] = useState<IBoard>();
@@ -11,7 +11,7 @@ const useChessData = () => {
 		const getData = () => {
 			setLoading(false);
 			axios
-				.get('board.json', {
+				.post('https://chess-api-test.herokuapp.com/games', {
 					headers: {
 						'content-type': 'application/json',
 						accept: 'application/json',
