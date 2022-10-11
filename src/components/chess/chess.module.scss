@@ -17,11 +17,11 @@
 			border: 3px solid black;
 
 			.square__icon {
-				width: 5vw;
 				height: 10vh;
 				background-color: transparent;
 				background-size: 10vh 5vw;
 				border: none;
+				box-sizing: border-box;
 
 				&:hover {
 					background-color: lightblue;

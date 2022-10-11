@@ -65,29 +65,15 @@ const Square: FC<ISquare> = ({
 	return (
 		<>
 			{pawns[color] !== undefined ? (
-				<button
+				<img
 					ref={drag}
 					className={
 						!isDragging
 							? styles['square__icon']
 							: `${styles['square__icon']} ${styles['square__icon_selected']}`
 					}
-					style={
-						target !== position
-							? {
-									backgroundImage:
-										"url('" +
-										pawns[color]?.[type].iconStyle +
-										"')",
-							  }
-							: {
-									backgroundColor: 'lightblue',
-									backgroundImage:
-										"url('" +
-										pawns[color]?.[type].iconStyle +
-										"')",
-							  }
-					}
+					src={pawns[color]?.[type].iconStyle}
+					alt=''
 					onMouseDown={() => {
 						toggleSelected();
 						select(position, col, row);
@@ -99,12 +85,7 @@ const Square: FC<ISquare> = ({
 				/>
 			) : (
 				<button
-					ref={drag}
-					className={
-						!isDragging
-							? styles['square__icon']
-							: `${styles['square__icon']} ${styles['square__icon_selected']}`
-					}
+					className={styles['square__icon']}
 					onMouseDown={() => {
 						toggleSelected();
 						select(position, col, row);
