@@ -3,7 +3,6 @@ import Square from './Square';
 
 import styles from './chess.module.scss';
 import { IBoard, ISquare } from '@board-types';
-import { useDrop } from 'react-dnd';
 import sendMove from '../../helpers/functions/sendMove';
 
 const Board: FC<IBoard> = ({ data, change }) => {
@@ -19,7 +18,7 @@ const Board: FC<IBoard> = ({ data, change }) => {
 		setMove(pos);
 		sendMove(current, [row, col]);
 		setTarget(-1);
-		setTimeout(() => change(), 500)
+		setTimeout(() => change(), 1000)
 	};
 
 	const squares = data?.map((x: ISquare) => {
@@ -29,33 +28,11 @@ const Board: FC<IBoard> = ({ data, change }) => {
 		return <Square key={x.position} {...x} />;
 	});
 
-	const [{ isOver }, drop] = useDrop(() => ({
-		accept: 'king' || 'queen' || 'knight' || 'rook' || 'pawn' || 'bishop',
-		drop: (item) => console.log(move),
-		collect: (monitor) => ({
-			isOver: !!monitor.isOver(),
-		}),
-	}));
-
 	return (
 		<div className={styles['board__wrapper']}>
-			<div className={styles['board__figures']} ref={drop}>
+			<div className={styles['board__figures']}>
 				{squares}
 			</div>
-			{isOver && (
-				<div
-					style={{
-						position: 'absolute',
-						top: 0,
-						left: 0,
-						height: '100%',
-						width: '100%',
-						zIndex: 1,
-						opacity: 0.5,
-						backgroundColor: 'yellow',
-					}}
-				/>
-			)}
 		</div>
 	);
 };

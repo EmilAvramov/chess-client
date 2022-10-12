@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { useDrag } from 'react-dnd';
+import { useDrag, useDrop } from 'react-dnd';
 
 import Pawn from '../../helpers/figures/Pawn';
 import Bishop from '../../helpers/figures/Bishop';
@@ -57,17 +57,24 @@ const Square: FC<ISquare> = ({
 		return {
 			type: 'empty',
 			collect: (monitor) => ({
-				isDragging: !!monitor.isDragging(),
+				isDragging: !!monitor.isDragging(),                                                
 			}),
 		};
 	});
 
+	const [{ isOver }, drop] = useDrop(() => ({
+		accept: 'king' || 'queen' || 'knight' || 'rook' || 'pawn' || 'bishop',
+		drop: (item) => console.log(item),
+		collect: (monitor) => ({
+			isOver: !!monitor.isOver(),
+		}),
+	}));
+
 	return (
 		<>
 			{pawns[color] !== undefined ? (
-				<button
+				<div
 					ref={drag}
-					draggable
 					className={
 						!isDragging
 							? styles['square__icon']
@@ -88,19 +95,36 @@ const Square: FC<ISquare> = ({
 					}}
 				/>
 			) : (
-				<button
-					className={styles['square__icon']}
-					onMouseDown={() => {
-						toggleSelected();
-						select(position, col, row);
-					}}
-					onMouseUp={() => {
-						if (target === position) {
+				<>
+					<div
+						ref={drop}
+						className={styles['square__icon']}
+						onMouseDown={() => {
 							toggleSelected();
-						}
-						move(position, col, row);
-					}}
-				/>
+							select(position, col, row);
+						}}
+						onMouseUp={() => {
+							if (target === position) {
+								toggleSelected();
+							}
+							move(position, col, row);
+						}}
+					/>
+					{isOver && (
+						<div
+							style={{
+								position: 'absolute',
+								top: 0,
+								left: 0,
+								height: '100%',
+								width: '100%',
+								zIndex: 1,
+								opacity: 0.5,
+								backgroundColor: 'yellow',
+							}}
+						/>
+					)}
+				</>
 			)}
 		</>
 	);
