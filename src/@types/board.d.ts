@@ -19,6 +19,7 @@ declare module '@board-types' {
 
 	export interface IBoard {
 		data: ISquare[] | undefined;
+		change: () => void
 	}
 
 	export interface IBoardObject {

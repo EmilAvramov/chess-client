@@ -5,11 +5,11 @@ import styles from './chess.module.scss';
 
 const Chess: React.FC = (): JSX.Element => {
 	// const { isConnected, lastPong, sendPing } = useSocket();
-	const { board } = useChessData();
+	const { board, changeTrigger } = useChessData();
 
 	return (
 		<main className={styles['chess__wrapper']}>
-			<Board data={board?.data} />
+			<Board data={board?.data} change={changeTrigger}/>
 			{/* <div>
 				<p>Connected: {'' + isConnected}</p>
 				<p>Last pong: {lastPong || '-'}</p>

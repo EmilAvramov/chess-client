@@ -65,15 +65,19 @@ const Square: FC<ISquare> = ({
 	return (
 		<>
 			{pawns[color] !== undefined ? (
-				<img
+				<button
 					ref={drag}
+					draggable
 					className={
 						!isDragging
 							? styles['square__icon']
 							: `${styles['square__icon']} ${styles['square__icon_selected']}`
 					}
-					src={pawns[color]?.[type].iconStyle}
-					alt=''
+					style={{
+						backgroundImage:
+							"url('" + pawns[color]?.[type].iconStyle + "')",
+						backgroundSize: '100% 100%',
+					}}
 					onMouseDown={() => {
 						toggleSelected();
 						select(position, col, row);
