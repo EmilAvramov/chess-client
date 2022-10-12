@@ -11,15 +11,7 @@ import styles from './chess.module.scss';
 
 import { ISquare, IBoardObject } from '@board-types';
 
-const Square: FC<ISquare> = ({
-	position,
-	color,
-	type,
-	col,
-	row,
-	move,
-	select,
-}) => {
+const Square: FC<ISquare> = ({ position, color, type, col, row, move }) => {
 	const pawns: IBoardObject = {
 		w: {
 			pawn: new Pawn(1),
@@ -44,7 +36,7 @@ const Square: FC<ISquare> = ({
 		if (pawns[color]?.[type]) {
 			return {
 				type: 'figure',
-				
+				item: { pos: position, col, row },
 				collect: (monitor) => ({
 					isDragging: !!monitor.isDragging(),
 				}),
@@ -60,7 +52,9 @@ const Square: FC<ISquare> = ({
 
 	const [{ isOver }, drop] = useDrop(() => ({
 		accept: 'figure',
-		drop: () => move(position, col, row),
+		drop: (item: any) => {
+			move([item.row, item.col], [row, col]);
+		},
 		collect: (monitor) => ({
 			isOver: !!monitor.isOver(),
 		}),
@@ -81,13 +75,16 @@ const Square: FC<ISquare> = ({
 							"url('" + pawns[color]?.[type].iconStyle + "')",
 						backgroundSize: '100% 100%',
 					}}
-					onMouseDown={() => select(position, col, row)}
 				/>
 			) : (
-				<>
-					<div ref={drop} className={styles['square__icon']} />
-					
-				</>
+				<div
+					ref={drop}
+					className={
+						!isOver
+							? styles['square__icon']
+							: `${styles['square__icon']} ${styles['square__icon_target']}`
+					}
+				/>
 			)}
 		</>
 	);

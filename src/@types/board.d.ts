@@ -7,8 +7,7 @@ declare module '@board-types' {
 	import Rook from '../helpers/figures/Rook';
 
 	export interface ISquare {
-		select: (pos: number, col: number, row: number) => void;
-		move: (pos: number, col: number, row: number) => void;
+		move: (target:number[], dest: number[]) => void;
 		position: number;
 		type: string | number;
 		color: string | number;
