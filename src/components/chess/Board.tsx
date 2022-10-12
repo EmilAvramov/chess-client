@@ -6,33 +6,29 @@ import { IBoard, ISquare } from '@board-types';
 import sendMove from '../../helpers/functions/sendMove';
 
 const Board: FC<IBoard> = ({ data, change }) => {
-	const [move, setMove] = useState(0);
 	const [current, setCurrent] = useState([-1, -1]);
-	const [target, setTarget] = useState(-1);
 
 	const changeSelection = (pos: number, col: number, row: number) => {
-		setTarget(pos);
+		console.log(col, row)
 		setCurrent([row, col]);
+		console.log(current)
 	};
 	const transmitMove = (pos: number, col: number, row: number) => {
-		setMove(pos);
+		console.log(current);
 		sendMove(current, [row, col]);
-		setTarget(-1);
-		setTimeout(() => change(), 1000)
+
+		setTimeout(() => change(), 1000);
 	};
 
 	const squares = data?.map((x: ISquare) => {
 		x.select = changeSelection;
 		x.move = transmitMove;
-		x.target = target;
 		return <Square key={x.position} {...x} />;
 	});
 
 	return (
 		<div className={styles['board__wrapper']}>
-			<div className={styles['board__figures']}>
-				{squares}
-			</div>
+			<div className={styles['board__figures']}>{squares}</div>
 		</div>
 	);
 };

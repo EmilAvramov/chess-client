@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 
 import Pawn from '../../helpers/figures/Pawn';
@@ -17,14 +17,9 @@ const Square: FC<ISquare> = ({
 	type,
 	col,
 	row,
-	select,
 	move,
-	target,
+	select,
 }) => {
-	const [selected, setSelected] = useState(false);
-
-	const toggleSelected = () => setSelected((selected) => !selected);
-
 	const pawns: IBoardObject = {
 		w: {
 			pawn: new Pawn(1),
@@ -48,7 +43,8 @@ const Square: FC<ISquare> = ({
 	const [{ isDragging }, drag] = useDrag(() => {
 		if (pawns[color]?.[type]) {
 			return {
-				type: pawns[color]?.[type].name,
+				type: 'figure',
+				
 				collect: (monitor) => ({
 					isDragging: !!monitor.isDragging(),
 				}),
@@ -57,14 +53,14 @@ const Square: FC<ISquare> = ({
 		return {
 			type: 'empty',
 			collect: (monitor) => ({
-				isDragging: !!monitor.isDragging(),                                                
+				isDragging: !!monitor.isDragging(),
 			}),
 		};
 	});
 
 	const [{ isOver }, drop] = useDrop(() => ({
-		accept: 'king' || 'queen' || 'knight' || 'rook' || 'pawn' || 'bishop',
-		drop: (item) => console.log(item),
+		accept: 'figure',
+		drop: () => move(position, col, row),
 		collect: (monitor) => ({
 			isOver: !!monitor.isOver(),
 		}),
@@ -85,45 +81,12 @@ const Square: FC<ISquare> = ({
 							"url('" + pawns[color]?.[type].iconStyle + "')",
 						backgroundSize: '100% 100%',
 					}}
-					onMouseDown={() => {
-						toggleSelected();
-						select(position, col, row);
-					}}
-					onMouseUp={() => {
-						toggleSelected();
-						move(position, col, row);
-					}}
+					onMouseDown={() => select(position, col, row)}
 				/>
 			) : (
 				<>
-					<div
-						ref={drop}
-						className={styles['square__icon']}
-						onMouseDown={() => {
-							toggleSelected();
-							select(position, col, row);
-						}}
-						onMouseUp={() => {
-							if (target === position) {
-								toggleSelected();
-							}
-							move(position, col, row);
-						}}
-					/>
-					{isOver && (
-						<div
-							style={{
-								position: 'absolute',
-								top: 0,
-								left: 0,
-								height: '100%',
-								width: '100%',
-								zIndex: 1,
-								opacity: 0.5,
-								backgroundColor: 'yellow',
-							}}
-						/>
-					)}
+					<div ref={drop} className={styles['square__icon']} />
+					
 				</>
 			)}
 		</>
