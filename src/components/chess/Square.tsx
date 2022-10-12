@@ -65,6 +65,7 @@ const Square: FC<ISquare> = ({ position, color, type, col, row, move }) => {
 			{pawns[color] !== undefined ? (
 				<div
 					ref={drag}
+					draggable
 					className={
 						!isDragging
 							? styles['square__icon']
@@ -79,6 +80,7 @@ const Square: FC<ISquare> = ({ position, color, type, col, row, move }) => {
 			) : (
 				<div
 					ref={drop}
+					draggable
 					className={
 						!isOver
 							? styles['square__icon']

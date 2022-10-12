@@ -11,7 +11,7 @@ const useChessData = () => {
 
 	const endpoint = 'https://chess-api-test.herokuapp.com'
 
-	const changeTrigger = () => setTrigger(!trigger);
+	const changeTrigger = () => setTrigger(state => !state);
 
 	useEffect(() => {
 		const getData = () => {
