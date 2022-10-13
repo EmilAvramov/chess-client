@@ -46,6 +46,7 @@ const Square: FC<ISquare> = ({ position, color, type, col, row, move }) => {
 		}
 		return {
 			type: 'empty',
+			item: { pos: position, col, row },
 			collect: (monitor) => ({
 				isDragging: !!monitor.isDragging(),
 			}),
@@ -53,7 +54,7 @@ const Square: FC<ISquare> = ({ position, color, type, col, row, move }) => {
 	});
 
 	const [{ isOver }, drop] = useDrop(() => ({
-		accept: 'figure',
+		accept: ['figure', 'empty'],
 		drop: (item: any) => {
 			move([item.row, item.col], [row, col]);
 		},
