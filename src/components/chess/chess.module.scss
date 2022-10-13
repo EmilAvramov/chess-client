@@ -23,13 +23,8 @@
 				background-size: 10vh 5vw;
 				border: none;
 				box-sizing: border-box;
-
-				&:hover {
-					background-color: lightblue;
-				}
 			}
 			.square__icon_selected {
-				border: 5px solid green;
 				opacity: 0;
 			}
 			.square__icon_target {

@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 
 import Pawn from '../../helpers/figures/Pawn';
@@ -12,6 +12,8 @@ import styles from './chess.module.scss';
 import { ISquare, IBoardObject } from '@board-types';
 
 const Square: FC<ISquare> = ({ position, color, type, col, row, move }) => {
+	const [background, setBackground] = useState('');
+
 	const pawns: IBoardObject = {
 		w: {
 			pawn: new Pawn(1),
@@ -60,17 +62,19 @@ const Square: FC<ISquare> = ({ position, color, type, col, row, move }) => {
 		}),
 	}));
 
-	const attachRef = (el:HTMLDivElement) => {
-		drop(el)
-		drag(el)
-	}
+	const attachRef = (el: HTMLDivElement) => {
+		drop(el);
+		drag(el);
+	};
 
 	return (
 		<>
 			{pawns[color] !== undefined ? (
 				<div
 					ref={attachRef}
-					draggable
+					onMouseEnter={() => setBackground('green')}
+					onDragStartCapture={() => setBackground('')}
+					onMouseLeave={() => setBackground('')}
 					className={
 						!isDragging
 							? styles['square__icon']
@@ -80,12 +84,12 @@ const Square: FC<ISquare> = ({ position, color, type, col, row, move }) => {
 						backgroundImage:
 							"url('" + pawns[color]?.[type].iconStyle + "')",
 						backgroundSize: '100% 100%',
+						backgroundColor: background,
 					}}
 				/>
 			) : (
 				<div
 					ref={drop}
-					draggable
 					className={
 						!isOver
 							? styles['square__icon']
