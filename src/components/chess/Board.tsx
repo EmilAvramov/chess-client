@@ -4,7 +4,7 @@ import Square from './Square';
 import styles from './chess.module.scss';
 import { IBoard, ISquare } from '@board-types';
 
-const Board: FC<IBoard> = ({ data, change, move }) => {
+const Board: FC<IBoard> = ({ data, move }) => {
 	const transmitMove = (target: number[], dest: number[]) => {
 		move(target, dest);
 	};
