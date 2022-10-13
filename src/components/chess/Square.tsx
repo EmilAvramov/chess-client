@@ -60,11 +60,16 @@ const Square: FC<ISquare> = ({ position, color, type, col, row, move }) => {
 		}),
 	}));
 
+	const attachRef = (el:HTMLDivElement) => {
+		drop(el)
+		drag(el)
+	}
+
 	return (
 		<>
 			{pawns[color] !== undefined ? (
 				<div
-					ref={drag}
+					ref={attachRef}
 					draggable
 					className={
 						!isDragging

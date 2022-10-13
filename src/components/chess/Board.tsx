@@ -3,12 +3,10 @@ import Square from './Square';
 
 import styles from './chess.module.scss';
 import { IBoard, ISquare } from '@board-types';
-import sendMove from '../../helpers/functions/sendMove';
 
-const Board: FC<IBoard> = ({ data, change }) => {
+const Board: FC<IBoard> = ({ data, change, move }) => {
 	const transmitMove = (target: number[], dest: number[]) => {
-		sendMove(target, dest);
-		setTimeout(() => change(), 1000);
+		move(target, dest);
 	};
 
 	const squares = data?.map((x: ISquare) => {

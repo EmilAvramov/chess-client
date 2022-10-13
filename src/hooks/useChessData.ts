@@ -8,10 +8,16 @@ const useChessData = () => {
 	const [error, setError] = useState<string | null>(null);
 	const [trigger, setTrigger] = useState<boolean>(false);
 	const [newGame, setNewGame] = useState<boolean>(true);
+	const [current, setCurrent] = useState<number[]>([-1, -1]);
+	const [target, setTarget] = useState<number[]>([-1, -1]);
 
-	const endpoint = 'https://chess-api-test.herokuapp.com'
+	const endpoint = 'http://185.205.12.209:7777';
 
-	const changeTrigger = () => setTrigger(state => !state);
+	const changeTrigger = () => setTrigger((state) => !state);
+	const sendMove = (current: number[], target: number[]) => {
+		setCurrent(current);
+		setTarget(target);
+	};
 
 	useEffect(() => {
 		const getData = () => {
@@ -37,23 +43,30 @@ const useChessData = () => {
 				setNewGame(false);
 			} else {
 				axios
-					.get(endpoint)
-					.then((res: any) => {
-						console.log(res);
-						setBoard(res);
-						setLoading(true);
+					.put('http://185.205.12.209:7777/figure/move', {
+						'current pos': current,
+						'target pos': target,
 					})
-					.catch((err: string) => {
-						console.log(err);
-						setLoading(true);
-						setError(err);
+					.then(() => {
+						axios
+							.get(endpoint)
+							.then((res: any) => {
+								console.log(res);
+								setBoard(res);
+								setLoading(true);
+							})
+							.catch((err: string) => {
+								console.log(err);
+								setLoading(true);
+								setError(err);
+							});
 					});
 			}
 		};
 		getData();
-	}, [newGame, trigger]);
+	}, [current, newGame, target, trigger]);
 
-	return { board, loading, error, changeTrigger };
+	return { board, loading, error, changeTrigger, sendMove };
 };
 
 export default useChessData;
