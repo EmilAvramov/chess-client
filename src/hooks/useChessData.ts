@@ -42,19 +42,13 @@ const useChessData = () => {
 					.put('http://185.205.12.209:7777/figure/move', {
 						'current pos': current,
 						'target pos': target,
+					}).then((res: any) => {
+						setBoard(res)
+						setLoading(true)
+					}).catch((err: string) => {
+						setError(err)
+						setLoading(true)
 					})
-					.then(() => {
-						axios
-							.get(endpoint)
-							.then((res: any) => {
-								setBoard(res);
-								setLoading(true);
-							})
-							.catch((err: string) => {
-								setLoading(true);
-								setError(err);
-							});
-					});
 			}
 		};
 		getData();
