@@ -7,7 +7,7 @@
 	gap: 50px;
 
 	.board__wrapper {
-		flex-basis: 50%;
+		flex-basis: 45%;
 
 		.board__figures {
 			@include geo.grid-repeat-columns(8, 1fr);

@@ -1,9 +1,15 @@
 declare module '@chat-types' {
+	export interface message {
+		id: number;
+		name: string;
+		text: string;
+	}
+
 	export interface IChatBody {
-		messages: string[];
+		messages: message[];
 	}
 
 	export interface IChatFooter {
-		captureMessage: (message:string) => void;
+		captureMessage: (message: message) => void;
 	}
 }

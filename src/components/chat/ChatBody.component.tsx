@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { IChatBody } from '@chat-types';
+import { IChatBody, message } from '@chat-types';
 import styles from '../../styles/components/Chat.module.scss';
 
 const ChatBody: FC<IChatBody> = ({ messages }) => {
@@ -24,19 +24,31 @@ const ChatBody: FC<IChatBody> = ({ messages }) => {
 			</header>
 
 			<div className={styles['body__container']}>
-				<div className={styles['body__container_message']}>
-					<p className={styles['message__sender']}>You</p>
-					<div className={styles['message__content']}>
-						<p>Hello there</p>
-					</div>
-				</div>
-
-				<div className={styles['body__container_message']}>
-					<p>Other</p>
-					<div className={styles['message__recipient']}>
-						<p>Hey, I'm good, you?</p>
-					</div>
-				</div>
+				{messages.map((value: message) =>
+					value.id % 2 !== 0 ? (
+						<div
+							className={styles['body__container_message']}
+							key={value.id}
+						>
+							<p className={styles['message__sender']}>
+								{value.name}
+							</p>
+							<div className={styles['message__content']}>
+								<p>{value.text}</p>
+							</div>
+						</div>
+					) : (
+						<div
+							className={styles['body__container_message']}
+							key={value.id}
+						>
+							<p>{value.name}</p>
+							<div className={styles['message__recipient']}>
+								<p>{value.text}</p>
+							</div>
+						</div>
+					)
+				)}
 
 				<div className={styles['message__status']}>
 					<p>Someone is typing...</p>

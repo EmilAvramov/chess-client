@@ -4,11 +4,14 @@ import { IChatFooter } from '@chat-types';
 import styles from '../../styles/components/Chat.module.scss';
 
 const ChatFooter: FC<IChatFooter> = ({ captureMessage }) => {
-	const [message, setMessage] = useState('');
+	const [message, setMessage] = useState<string>('');
+	const [counter, setCounter] = useState<number>(0);
+	const [user, setUser] = useState<string>('myself');
 
 	const handleSendMessage = (e: any) => {
 		e.preventDefault();
-		captureMessage(message);
+		setCounter((counter) => counter + 1);
+		captureMessage({ id: counter, name: user, text: message });
 		setMessage('');
 	};
 	return (
