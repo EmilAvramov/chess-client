@@ -1,8 +1,10 @@
+import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { IChatBody } from '@chat-types';
 import styles from '../../styles/components/Chat.module.scss';
 
-const ChatBody = () => {
+const ChatBody: FC<IChatBody> = ({ messages }) => {
 	const navigate = useNavigate();
 
 	const handleLeaveChat = () => {

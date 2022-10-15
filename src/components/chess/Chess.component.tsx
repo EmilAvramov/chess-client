@@ -1,6 +1,6 @@
 import useChessData from '../../hooks/useChessData';
 import useSocket from '../../hooks/useSocket';
-import Board from './Board.component';
+import ChessBoard from './ChessBoard.component';
 import Chat from '../chat/Chat.component';
 
 import styles from '../../styles/components/Chess.module.scss';
@@ -11,7 +11,7 @@ const Chess: React.FC = (): JSX.Element => {
 
 	return (
 		<main className={styles['chess__wrapper']}>
-			<Board data={board?.data} move={sendMove}/>
+			<ChessBoard data={board?.data} move={sendMove}/>
 			<Chat/>
 		</main>
 	);

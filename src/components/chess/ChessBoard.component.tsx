@@ -1,10 +1,10 @@
 import { FC } from 'react';
-import Square from './Square.component';
+import Square from './ChessSquare.component';
 
 import styles from '../../styles/components/Chess.module.scss';
 import { IBoard, ISquare } from '@board-types';
 
-const Board: FC<IBoard> = ({ data, move }) => {
+const ChessBoard: FC<IBoard> = ({ data, move }) => {
 	const transmitMove = (target: number[], dest: number[]) => {
 		move(target, dest);
 	};
@@ -21,4 +21,4 @@ const Board: FC<IBoard> = ({ data, move }) => {
 	);
 };
 
-export default Board;
+export default ChessBoard;
