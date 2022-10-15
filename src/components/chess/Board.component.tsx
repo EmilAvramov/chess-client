@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import Square from './Square';
+import Square from './Square.component';
 
-import styles from './chess.module.scss';
+import styles from './styles.module.scss';
 import { IBoard, ISquare } from '@board-types';
 
 const Board: FC<IBoard> = ({ data, move }) => {

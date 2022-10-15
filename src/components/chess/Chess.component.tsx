@@ -1,7 +1,8 @@
 import useChessData from '../../hooks/useChessData';
 import useSocket from '../../hooks/useSocket';
-import Board from './Board';
-import styles from './chess.module.scss';
+import Board from './Board.component';
+import Chat from '../chat/Chat.component';
+import styles from './styles.module.scss';
 
 const Chess: React.FC = (): JSX.Element => {
 	// const { isConnected, lastPong, sendPing } = useSocket();
@@ -10,11 +11,7 @@ const Chess: React.FC = (): JSX.Element => {
 	return (
 		<main className={styles['chess__wrapper']}>
 			<Board data={board?.data} move={sendMove}/>
-			{/* <div>
-				<p>Connected: {'' + isConnected}</p>
-				<p>Last pong: {lastPong || '-'}</p>
-				<button onClick={sendPing}>Send ping</button>
-			</div> */}
+			<Chat/>
 		</main>
 	);
 };

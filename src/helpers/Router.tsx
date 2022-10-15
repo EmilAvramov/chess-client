@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import FAQ from '../components/faq/FAQ';
 import Login from '../components/login/Login';
 import Register from '../components/register/Register';
-import Chess from '../components/chess/Chess';
+import Chess from '../components/chess/Chess.component';
 
 import Header from '../components/header/Header';
 import Home from '../components/home/Home';
