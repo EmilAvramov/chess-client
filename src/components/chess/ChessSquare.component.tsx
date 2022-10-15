@@ -12,8 +12,15 @@ import styles from '../../styles/components/Chess.module.scss';
 
 import { ISquare, IBoardObject } from '@board-types';
 
-const Square: FC<ISquare> = ({ position, color, type, col, row, move }) => {
-	const [background, setBackground] = useState('');
+const Square: FC<ISquare> = ({
+	position,
+	color,
+	type,
+	col,
+	row,
+	move,
+}): JSX.Element => {
+	const [background, setBackground] = useState<string>('');
 
 	const pawns: IBoardObject = {
 		w: {

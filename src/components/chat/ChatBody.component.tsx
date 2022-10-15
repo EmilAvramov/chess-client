@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { IChatBody, message } from '@chat-types';
 import styles from '../../styles/components/Chat.module.scss';
 
-const ChatBody: FC<IChatBody> = ({ messages }) => {
+const ChatBody: FC<IChatBody> = ({ messages, messageRef }): JSX.Element => {
 	const navigate = useNavigate();
 
 	const handleLeaveChat = () => {
@@ -25,7 +25,7 @@ const ChatBody: FC<IChatBody> = ({ messages }) => {
 
 			<div className={styles['body__container']}>
 				{messages.map((value: message) =>
-					value.id % 2 !== 0 ? (
+					value.id % 2 !== 0 || value.id === 0 ? (
 						<div
 							className={styles['body__container_message']}
 							key={value.id}
@@ -53,6 +53,7 @@ const ChatBody: FC<IChatBody> = ({ messages }) => {
 				<div className={styles['message__status']}>
 					<p>Someone is typing...</p>
 				</div>
+				<div ref={messageRef}></div>
 			</div>
 		</>
 	);

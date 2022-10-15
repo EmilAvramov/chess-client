@@ -4,7 +4,7 @@ import Square from './ChessSquare.component';
 import styles from '../../styles/components/Chess.module.scss';
 import { IBoard, ISquare } from '@board-types';
 
-const ChessBoard: FC<IBoard> = ({ data, move }) => {
+const ChessBoard: FC<IBoard> = ({ data, move }): JSX.Element => {
 	const transmitMove = (target: number[], dest: number[]) => {
 		move(target, dest);
 	};

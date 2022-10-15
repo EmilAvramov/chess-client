@@ -7,6 +7,7 @@ declare module '@chat-types' {
 
 	export interface IChatBody {
 		messages: message[];
+		messageRef: LegacyRef<HTMLDivElement>;
 	}
 
 	export interface IChatFooter {
