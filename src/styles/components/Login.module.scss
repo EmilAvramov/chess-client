@@ -1,5 +1,5 @@
-@use '../../styles/_geometry.module' as geo;
-@use '../../styles//text.module' as text;
+@use '../helpers/_geometry.module' as geo;
+@use '../helpers/text.module' as text;
 
 .login__wrapper {
 	@include geo.adjust-page-layout();

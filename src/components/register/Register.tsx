@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import { emailPattern, passwordPattern } from '../../helpers/misc/patterns';
 
-import styles from './register.module.scss';
+import styles from '../../styles/components/Register.module.scss';
 
 type FormValues = {
 	name: string;

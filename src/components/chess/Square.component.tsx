@@ -7,7 +7,8 @@ import Queen from '../../helpers/figures/Queen';
 import King from '../../helpers/figures/King';
 import Knight from '../../helpers/figures/Knight';
 import Rook from '../../helpers/figures/Rook';
-import styles from './styles.module.scss';
+
+import styles from '../../styles/components/Chess.module.scss';
 
 import { ISquare, IBoardObject } from '@board-types';
 

@@ -2,8 +2,9 @@ import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import styles from './login.module.scss';
+
 import { emailPattern } from '../../helpers/misc/patterns';
+import styles from '../../styles/components/Login.module.scss';
 
 type FormValues = {
 	email: string;
