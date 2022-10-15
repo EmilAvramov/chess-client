@@ -4,8 +4,11 @@
 .chess__wrapper {
 	@include geo.adjust-page-layout();
 	background-color: antiquewhite;
+	gap: 50px;
 
 	.board__wrapper {
+		flex-basis: 50%;
+
 		.board__figures {
 			@include geo.grid-repeat-columns(8, 1fr);
 			background: repeating-conic-gradient(

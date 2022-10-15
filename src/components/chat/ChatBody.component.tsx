@@ -1,42 +1,42 @@
 import { useNavigate } from 'react-router-dom';
 
+import styles from '../../styles/components/Chat.module.scss';
+
 const ChatBody = () => {
 	const navigate = useNavigate();
 
 	const handleLeaveChat = () => {
-		localStorage.removeItem('userName');
 		navigate('/');
-		window.location.reload();
 	};
 
 	return (
 		<>
-			<header className='chat__mainHeader'>
-				<p>Hangout with Colleagues</p>
-				<button className='leaveChat__btn' onClick={handleLeaveChat}>
+			<header className={styles['body__header']}>
+				<p>Connected on chat with USERNAME</p>
+				<button
+					className={styles['body__header_leave']}
+					onClick={handleLeaveChat}
+				>
 					LEAVE CHAT
 				</button>
 			</header>
 
-			{/*This shows messages sent from you*/}
-			<div className='message__container'>
-				<div className='message__chats'>
-					<p className='sender__name'>You</p>
-					<div className='message__sender'>
+			<div className={styles['body__container']}>
+				<div className={styles['body__container_message']}>
+					<p className={styles['message__sender']}>You</p>
+					<div className={styles['message__content']}>
 						<p>Hello there</p>
 					</div>
 				</div>
 
-				{/*This shows messages received by you*/}
-				<div className='message__chats'>
+				<div className={styles['body__container_message']}>
 					<p>Other</p>
-					<div className='message__recipient'>
+					<div className={styles['message__recipient']}>
 						<p>Hey, I'm good, you?</p>
 					</div>
 				</div>
 
-				{/*This is triggered when a user is typing*/}
-				<div className='message__status'>
+				<div className={styles['message__status']}>
 					<p>Someone is typing...</p>
 				</div>
 			</div>

@@ -1,24 +1,25 @@
 import { useState } from 'react';
 
+import styles from '../../styles/components/Chat.module.scss';
+
 const ChatFooter = () => {
 	const [message, setMessage] = useState('');
 
 	const handleSendMessage = (e: any) => {
 		e.preventDefault();
-		console.log({ userName: localStorage.getItem('userName'), message });
 		setMessage('');
 	};
 	return (
-		<div className='chat__footer'>
-			<form className='form' onSubmit={handleSendMessage}>
+		<div className={styles['footer__wrapper']}>
+			<form className={styles['footer__form']} onSubmit={handleSendMessage}>
 				<input
 					type='text'
 					placeholder='Write message'
-					className='message'
+					className={styles['footer__message']}
 					value={message}
 					onChange={(e) => setMessage(e.target.value)}
 				/>
-				<button className='sendBtn'>SEND</button>
+				<button className={styles['footer__send']}>SEND</button>
 			</form>
 		</div>
 	);
