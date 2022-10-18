@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { IChatBody, message } from '@chat-types';
 import styles from '../../styles/components/Chat.module.scss';
 
-const ChatBody: FC<IChatBody> = ({ messages, messageRef }): JSX.Element => {
+const ChatBody: FC<IChatBody> = ({ messages, messageRef, socket }): JSX.Element => {
 	const navigate = useNavigate();
 
 	const handleLeaveChat = () => {

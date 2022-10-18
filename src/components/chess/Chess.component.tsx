@@ -14,7 +14,7 @@ const Chess: React.FC = (): JSX.Element => {
 	return (
 		<main className={styles['chess__wrapper']}>
 			<ChessBoard data={board?.data} move={sendMove}/>
-			<Chat/>
+			<Chat socket={socketID} connected={isConnected}/>
 		</main>
 	);
 };
