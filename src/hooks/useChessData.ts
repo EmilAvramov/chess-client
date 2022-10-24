@@ -9,12 +9,14 @@ const useChessData = () => {
 	const [newGame, setNewGame] = useState<boolean>(true);
 	const [current, setCurrent] = useState<number[]>([-1, -1]);
 	const [target, setTarget] = useState<number[]>([-1, -1]);
+	const [game, setGame] = useState<string>('')
 
-	const endpoint = 'http://185.205.12.209:7777';
+	const endpoint = 'https://chess-api-test.herokuapp.com';
 
-	const sendMove = (current: number[], target: number[]) => {
+	const sendMove = (current: number[], target: number[], id: string) => {
 		setCurrent(current);
 		setTarget(target);
+		setGame(id)
 	};
 
 	useEffect(() => {
@@ -39,9 +41,10 @@ const useChessData = () => {
 				setNewGame(false);
 			} else {
 				axios
-					.put('http://185.205.12.209:7777/figure/move', {
+					.put(`${endpoint}/figure/move`, {
 						'current pos': current,
 						'target pos': target,
+						'game id': game
 					}).then((res: any) => {
 						setBoard(res)
 						setLoading(true)
@@ -52,7 +55,7 @@ const useChessData = () => {
 			}
 		};
 		getData();
-	}, [current, newGame, target]);
+	}, [current, game, newGame, target]);
 
 	return { board, loading, error, sendMove };
 };

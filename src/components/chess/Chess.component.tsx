@@ -9,12 +9,17 @@ const Chess: React.FC = (): JSX.Element => {
 	const { isConnected, socketID } = useSocket();
 	const { board, sendMove } = useChessData();
 
-	console.log(isConnected, socketID)
+	console.log(isConnected, socketID);
 
 	return (
 		<main className={styles['chess__wrapper']}>
-			<ChessBoard data={board?.data} move={sendMove}/>
-			<Chat socket={socketID} connected={isConnected}/>
+			<ChessBoard
+				data={board?.data.pieces}
+				move={sendMove}
+				game={board?.data.game.id}
+				over={board?.data.game.isOver}
+			/>
+			<Chat socket={socketID} connected={isConnected} />
 		</main>
 	);
 };

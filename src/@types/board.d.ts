@@ -6,6 +6,12 @@ declare module '@board-types' {
 	import Queen from '../helpers/figures/Queen';
 	import Rook from '../helpers/figures/Rook';
 
+	interface IMove {
+		position: number,
+		row: number,
+		col: number
+	}
+
 	export interface ISquare {
 		move: (target:number[], dest: number[]) => void;
 		position: number;
@@ -14,11 +20,18 @@ declare module '@board-types' {
 		target: number;
 		row: number;
 		col: number;
+		moves: IMove[] | 0
 	}
 
 	export interface IBoard {
-		data: ISquare[] | undefined;
-		move: (current: number[], target: number[]) => void
+		data: {
+			game: {
+				id: string,
+				isOver: boolean
+			}
+			pieces: ISquare[] | undefined;
+		}
+		move: (current: number[], target: number[], id: string) => void
 	}
 
 	export interface IBoardObject {
