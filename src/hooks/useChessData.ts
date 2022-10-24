@@ -1,15 +1,22 @@
 import axios from 'axios';
-import { IBoard } from '@board-types';
 import { useEffect, useState } from 'react';
+import { IChessData, IPiece } from '@hook-types';
 
 const useChessData = () => {
-	const [board, setBoard] = useState<IBoard>();
+	// API Data
+	const [board, setBoard] = useState<IPiece[]>();
+	const [game, setGame] = useState<string>('')
+	const [end, setEnd] = useState<boolean>(false)
+	
+	// Helpers
 	const [loading, setLoading] = useState<boolean>(false);
 	const [error, setError] = useState<string | null>(null);
+
+	// Hook operational
 	const [newGame, setNewGame] = useState<boolean>(true);
 	const [current, setCurrent] = useState<number[]>([-1, -1]);
 	const [target, setTarget] = useState<number[]>([-1, -1]);
-	const [game, setGame] = useState<string>('')
+	
 
 	const endpoint = 'https://chess-api-test.herokuapp.com';
 
@@ -30,8 +37,10 @@ const useChessData = () => {
 							accept: 'application/json',
 						},
 					})
-					.then((res: any) => {
-						setBoard(res);
+					.then((res: IChessData) => {
+						setBoard(res.data.pieces);
+						setGame(res.data.game.id)
+						setEnd(res.data.game.isOver)
 						setLoading(true);
 					})
 					.catch((err: string) => {
@@ -57,7 +66,7 @@ const useChessData = () => {
 		getData();
 	}, [current, game, newGame, target]);
 
-	return { board, loading, error, sendMove };
+	return { board, sendMove, end, loading, error };
 };
 
 export default useChessData;
