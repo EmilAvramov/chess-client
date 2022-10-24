@@ -1,15 +1,19 @@
 declare module '@hook-types' {
 	export interface IChessData {
-		data: {
-			game: {
-				id: string;
-				isOver: boolean;
-			};
-			pieces: IPiece[];
-		};
+		data: [
+			{
+				game: [{
+					id: string;
+					isOver: boolean;
+				}];
+			},
+			{ 
+				pieces: IPiece[] 
+			}
+		];
 	}
 
-    interface IPiece {
+	interface IPiece {
 		position: number;
 		type: string | number;
 		color: string | number;
@@ -17,7 +21,7 @@ declare module '@hook-types' {
 		row: number;
 		col: number;
 		moves: IMove[] | number;
-        move: (target:number[], dest: number[]) => void;
+		move: (target: number[], dest: number[]) => void;
 	}
 
 	interface IMove {

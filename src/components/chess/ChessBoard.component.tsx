@@ -6,7 +6,6 @@ import { IPiece } from '@hook-types';
 import { IBoard } from '@board-types';
 
 const ChessBoard: FC<IBoard> = ({ pieces }): JSX.Element => {
-
 	const squares = pieces?.map((x: IPiece) => (
 		<Square key={x.position} {...x} />
 	));
