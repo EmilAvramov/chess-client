@@ -20,10 +20,9 @@ const useChessData = () => {
 
 	const endpoint = 'https://chess-api-test.herokuapp.com';
 
-	const sendMove = (current: number[], target: number[], id: string) => {
+	const sendMove = (current: number[], target: number[]) => {
 		setCurrent(current);
 		setTarget(target);
-		setGame(id)
 	};
 
 	useEffect(() => {
@@ -38,7 +37,11 @@ const useChessData = () => {
 						},
 					})
 					.then((res: IChessData) => {
-						setBoard(res.data.pieces);
+						let board = res.data.pieces.map((x:IPiece) => {
+							x.move = sendMove
+							return x
+						})
+						setBoard(board);
 						setGame(res.data.game.id)
 						setEnd(res.data.game.isOver)
 						setLoading(true);
@@ -66,7 +69,7 @@ const useChessData = () => {
 		getData();
 	}, [current, game, newGame, target]);
 
-	return { board, sendMove, end, loading, error };
+	return { board, end, loading, error };
 };
 
 export default useChessData;

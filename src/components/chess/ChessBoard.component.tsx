@@ -2,17 +2,14 @@ import { FC } from 'react';
 import Square from './ChessSquare.component';
 
 import styles from '../../styles/components/Chess.module.scss';
-import { IBoard, ISquare } from '@board-types';
+import { IPiece } from '@hook-types';
+import { IBoard } from '@board-types';
 
-const ChessBoard: FC<IBoard> = ({ data, move, game }): JSX.Element => {
-	const transmitMove = (target: number[], dest: number[]) => {
-		move(target, dest, game);
-	};
+const ChessBoard: FC<IBoard> = ({ pieces }): JSX.Element => {
 
-	const squares = data?.map((x: ISquare) => {
-		x.move = transmitMove;
-		return <Square key={x.position} {...x} />;
-	});
+	const squares = pieces?.map((x: IPiece) => (
+		<Square key={x.position} {...x} />
+	));
 
 	return (
 		<div className={styles['board__wrapper']}>

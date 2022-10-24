@@ -10,15 +10,17 @@ import Rook from '../../helpers/figures/Rook';
 
 import styles from '../../styles/components/Chess.module.scss';
 
-import { ISquare, IBoardObject } from '@board-types';
+import { IBoardObject } from '@board-types';
+import { IPiece } from '@hook-types';
 
-const Square: FC<ISquare> = ({
+const Square: FC<IPiece> = ({
 	position,
 	color,
 	type,
 	col,
 	row,
 	move,
+	moves,
 }): JSX.Element => {
 	const [background, setBackground] = useState<string>('');
 

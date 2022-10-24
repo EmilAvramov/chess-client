@@ -1,4 +1,5 @@
 declare module '@board-types' {
+	import { IPiece } from "@hook-types";
 	import Bishop from '../helpers/figures/Bishop';
 	import King from '../helpers/figures/King';
 	import Knight from '../helpers/figures/Knight';
@@ -6,20 +7,9 @@ declare module '@board-types' {
 	import Queen from '../helpers/figures/Queen';
 	import Rook from '../helpers/figures/Rook';
 
-	export interface ISquare {
-		move: (target:number[], dest: number[], id: string) => void;
-		position: number;
-		type: string | number;
-		color: string | number;
-		target: number;
-		row: number;
-		col: number;
-		moves: IMove[] | 0
-	}
-
 	export interface IBoard {
-		move: (current: number[], target: number[], id: string) => void
-		pieces: ISquare[] | undefined;
+		pieces: IPiece[] | undefined,
+		isOver: boolean
 	}
 
 	export interface IBoardObject {
@@ -28,11 +18,5 @@ declare module '@board-types' {
 					[key: string]: Pawn | Bishop | Queen | King | Knight | Rook;
 			  }
 			| undefined;
-	}
-
-	interface IMove {
-		position: number,
-		row: number,
-		col: number
 	}
 }

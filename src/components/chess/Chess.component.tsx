@@ -7,17 +7,15 @@ import styles from '../../styles/components/Chess.module.scss';
 
 const Chess: React.FC = (): JSX.Element => {
 	const { isConnected, socketID } = useSocket();
-	const { board, sendMove } = useChessData();
+	const { board, end } = useChessData();
 
 	console.log(isConnected, socketID);
 
 	return (
 		<main className={styles['chess__wrapper']}>
 			<ChessBoard
-				data={board?.data.pieces}
-				move={sendMove}
-				game={board?.data.game.id}
-				over={board?.data.game.isOver}
+				pieces={board}
+				isOver={end}
 			/>
 			<Chat socket={socketID} connected={isConnected} />
 		</main>

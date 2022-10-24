@@ -16,7 +16,8 @@ declare module '@hook-types' {
 		target: number;
 		row: number;
 		col: number;
-		moves: IMove[] | 0;
+		moves: IMove[] | number;
+        move: (target:number[], dest: number[]) => void;
 	}
 
 	interface IMove {
