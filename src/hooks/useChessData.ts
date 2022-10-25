@@ -45,7 +45,6 @@ const useChessData = () => {
 						setGame(res.data[0].game[0].id);
 						setEnd(res.data[0].game[0].isOver);
 						setLoading(true);
-						console.log(res)
 					})
 					.catch((err: string) => {
 						setLoading(true);
@@ -54,7 +53,6 @@ const useChessData = () => {
 				setNewGame(false);
 			} else {
 				if (target[0] !== -1 && current[0] !== -1) {
-					console.log(game)
 					axios
 						.put(`${endpoint}/figure/move`, {
 							'current pos': current,
@@ -69,7 +67,7 @@ const useChessData = () => {
 							});
 							setBoard(board);
 							setGame(res.data[0].game[0].id);
-								setEnd(res.data[0].game[0].isOver);
+							setEnd(res.data[0].game[0].isOver);
 							setLoading(true);
 						})
 						.catch((err: string) => {

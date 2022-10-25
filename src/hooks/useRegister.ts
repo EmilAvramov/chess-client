@@ -13,12 +13,16 @@ export const useRegister = () => {
 
 	useEffect(() => {
 		axios
-			.post('endpoint', {
-				headers: {
-					'content-type': 'application/json',
-					'X-Authorization': token,
-				},
-			})
+			.post(
+				'endpoint',
+				{},
+				{
+					headers: {
+						'content-type': 'application/json',
+						'X-Authorization': token,
+					},
+				}
+			)
 			.then((res: any) => {
 				console.log(res.data);
 				if (res.data.token) {
