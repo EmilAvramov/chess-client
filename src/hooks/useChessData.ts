@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { IChessData, IPiece } from '@hook-types';
+import { dataEndPoint } from '../helpers/misc/config';
 
 const useChessData = () => {
 	// API Data
@@ -17,8 +18,6 @@ const useChessData = () => {
 	const [current, setCurrent] = useState<number[]>([-1, -1]);
 	const [target, setTarget] = useState<number[]>([-1, -1]);
 
-	const endpoint = 'http://185.205.12.209:7777';
-
 	const sendMove = (current: number[], target: number[]) => {
 		setCurrent(current);
 		setTarget(target);
@@ -29,7 +28,7 @@ const useChessData = () => {
 			setLoading(false);
 			if (newGame) {
 				axios
-					.post(`${endpoint}/games`, {
+					.post(`${dataEndPoint}/games`, {
 						headers: {
 							'content-type': 'application/json',
 							accept: 'application/json',
@@ -54,7 +53,7 @@ const useChessData = () => {
 			} else {
 				if (target[0] !== -1 && current[0] !== -1) {
 					axios
-						.put(`${endpoint}/figure/move`, {
+						.put(`${dataEndPoint}/figure/move`, {
 							'current pos': current,
 							'target pos': target,
 							'game id': game,

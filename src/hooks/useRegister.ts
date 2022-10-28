@@ -2,6 +2,7 @@ import { IUser } from '@user-types';
 import axios from 'axios';
 import { decode } from 'jsonwebtoken';
 import { useEffect, useState } from 'react';
+import { userEndPoint } from '../helpers/misc/config';
 
 export const useRegister = () => {
 	const [token, setToken] = useState<string>('');
@@ -14,7 +15,7 @@ export const useRegister = () => {
 	useEffect(() => {
 		axios
 			.post(
-				'endpoint',
+				userEndPoint,
 				{},
 				{
 					headers: {

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { decode } from 'jsonwebtoken';
 import { useEffect, useState } from 'react';
 import { hashPassword } from '../functions/hasher.function';
+import { userEndPoint } from '../helpers/misc/config';
 
 export const useLogin = () => {
 	const [email, setEmail] = useState<string>('');
@@ -19,7 +20,7 @@ export const useLogin = () => {
 			const hashedPassword = hashPassword(password);
 			axios
 				.post(
-					'endpoint',
+					userEndPoint,
 					{ email, password: hashedPassword },
 					{
 						headers: {
