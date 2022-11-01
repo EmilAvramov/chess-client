@@ -15,7 +15,8 @@ module.exports = function override (config, env) {
         "crypto": require.resolve("crypto-browserify"),
         "os": require.resolve("os-browserify/browser"),
         "constants": require.resolve("constants-browserify"),
-        "timers": require.resolve("timers-browserify")
+        "timers": require.resolve("timers-browserify"),
+        "process": require.resolve("process/browser")
     }
     
     return config
