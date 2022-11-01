@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 
 import { emailPattern } from '../../helpers/misc/patterns';
 import styles from '../../styles/components/Login.module.scss';
+import { useLogin } from '../../hooks/useLogin';
 
 type FormValues = {
 	email: string;
@@ -12,6 +13,8 @@ type FormValues = {
 };
 
 const Login: React.FC = (): JSX.Element => {
+	const { provideDetails, userData } = useLogin()
+
 	const validationSchema = Yup.object().shape({
 		email: Yup.string()
 			.matches(emailPattern, { message: 'Enter a valid email' })
@@ -30,7 +33,8 @@ const Login: React.FC = (): JSX.Element => {
 	});
 
 	const submitForm = (data: FormValues) => {
-		console.log(data);
+		provideDetails(data.email, data.password)
+		console.log(userData)
 	};
 
 	return (

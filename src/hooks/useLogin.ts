@@ -20,7 +20,7 @@ export const useLogin = () => {
 			const hashedPassword = hashPassword(password);
 			axios
 				.post(
-					userEndPoint,
+					`${userEndPoint}/api/v1/login`,
 					{ email, password: hashedPassword },
 					{
 						headers: {
@@ -29,8 +29,10 @@ export const useLogin = () => {
 					}
 				)
 				.then((res: any) => {
+					console.log(res.data.token)
 					const decodedToken = decode(res.data.token) as IUser;
 					setUserData(decodedToken);
+					console.log(decodedToken)
 				});
 		}
 	}, [email, password]);
