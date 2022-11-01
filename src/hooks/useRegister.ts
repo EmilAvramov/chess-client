@@ -13,29 +13,31 @@ export const useRegister = () => {
 	};
 
 	useEffect(() => {
-		axios
-			.post(
-				`${dataEndPoint}/api/v1/users`,
-				{},
-				{
-					headers: {
-						'content-type': 'application/json',
-						'X-Authorization': token,
-					},
-				}
-			)
-			.then((res: any) => {
-				console.log(res.data);
-				if (res.data.token) {
-					const userDetails = decode(res.data.token) as IUser;
-					setUserData(userDetails);
-				} else {
-					throw Error('no token received!');
-				}
-			})
-			.catch((err: any) => {
-				console.log(err);
-			});
+		if (token) {
+			axios
+				.post(
+					`${dataEndPoint}/api/v1/users`,
+					{},
+					{
+						headers: {
+							'content-type': 'application/json',
+							'X-Authorization': token,
+						},
+					}
+				)
+				.then((res: any) => {
+					console.log(res.data);
+					if (res.data.token) {
+						const userDetails = decode(res.data.token) as IUser;
+						setUserData(userDetails);
+					} else {
+						throw Error('no token received!');
+					}
+				})
+				.catch((err: any) => {
+					console.log(err);
+				});
+		}
 	}, [token]);
 
 	return { provideToken, userData };

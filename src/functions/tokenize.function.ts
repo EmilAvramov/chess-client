@@ -10,6 +10,4 @@ export const createToken = (email: string, name: string, password: string) => {
 	return token;
 };
 
-export const decodeToken = (token: string) => {
-	return decode(token);
-};
+export const decodeToken = (token: string) => decode(token);
