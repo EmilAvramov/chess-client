@@ -1,4 +1,4 @@
-import { hash, genSalt, compare } from 'bcrypt';
+import { hash, genSalt, compare } from 'bcryptjs';
 import { saltRounds } from '../helpers/misc/config';
 
 export const hashPassword = async (password: string) => {
