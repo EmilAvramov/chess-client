@@ -3,7 +3,7 @@ import axios from 'axios';
 import { decode } from 'jsonwebtoken';
 import { useEffect, useState } from 'react';
 import { hashPassword } from '../functions/hasher.function';
-import { userEndPoint } from '../helpers/misc/config';
+import { dataEndPoint } from '../helpers/misc/config';
 
 export const useLogin = () => {
 	const [email, setEmail] = useState<string>('');
@@ -17,23 +17,24 @@ export const useLogin = () => {
 
 	useEffect(() => {
 		if (email && password) {
-			const hashedPassword = hashPassword(password);
-			axios
-				.post(
-					`${userEndPoint}/api/v1/login`,
-					{ email, password: hashedPassword },
-					{
-						headers: {
-							'content-type': 'application/json',
-						},
-					}
-				)
-				.then((res: any) => {
-					console.log(res.data.token)
-					const decodedToken = decode(res.data.token) as IUser;
-					setUserData(decodedToken);
-					console.log(decodedToken)
-				});
+			hashPassword(password).then((hashed: string) => {
+				axios
+					.post(
+						`${dataEndPoint}/api/v1/login`,
+						{ email, password: hashed },
+						{
+							headers: {
+								'content-type': 'application/json',
+							},
+						}
+					)
+					.then((res: any) => {
+						console.log(res.data.token);
+						const decodedToken = decode(res.data.token) as IUser;
+						setUserData(decodedToken);
+						console.log(decodedToken);
+					});
+			});
 		}
 	}, [email, password]);
 

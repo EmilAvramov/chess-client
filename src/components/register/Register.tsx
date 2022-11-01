@@ -2,7 +2,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
+import { createToken } from '../../functions/tokenize.function';
 import { emailPattern, passwordPattern } from '../../helpers/misc/patterns';
+import { useRegister } from '../../hooks/useRegister';
 
 import styles from '../../styles/components/Register.module.scss';
 
@@ -33,6 +35,8 @@ const Register = () => {
 			),
 	});
 
+	const { provideToken, userData } = useRegister()
+
 	const {
 		register,
 		handleSubmit,
@@ -48,7 +52,10 @@ const Register = () => {
 		email: string;
 		password: string;
 	}) => {
-		console.log(data);
+		let token = createToken(data.email, data.name, data.password)
+		console.log(token)
+		provideToken(token)
+		console.log(userData)
 	};
 
 	return (
