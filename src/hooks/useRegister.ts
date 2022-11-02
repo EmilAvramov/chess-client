@@ -1,44 +1,43 @@
 import { IUser } from '@user-types';
 import axios from 'axios';
-import { decode } from 'jsonwebtoken';
 import { useEffect, useState } from 'react';
 import { dataEndPoint } from '../helpers/misc/config';
 
 export const useRegister = () => {
-	const [token, setToken] = useState<string>('');
+	const [email, setEmail] = useState<string>('');
+	const [name, setName] = useState<string>('');
+	const [password, setPassword] = useState<string>('');
 	const [userData, setUserData] = useState<IUser>();
 
-	const provideToken = (token: string) => {
-		setToken(token);
+	const provideDetails = (name: string, email: string, password: string) => {
+		setEmail(email);
+		setPassword(password);
+		setName(name);
 	};
 
 	useEffect(() => {
-		if (token) {
+		if (email && password && name) {
 			axios
 				.post(
 					`${dataEndPoint}/api/v1/users`,
-					{},
+					{ name, email, password },
 					{
 						headers: {
 							'content-type': 'application/json',
-							'X-Authorization': token,
 						},
 					}
 				)
 				.then((res: any) => {
-					console.log(res.data);
-					if (res.data.token) {
-						const userDetails = decode(res.data.token) as IUser;
-						setUserData(userDetails);
-					} else {
-						throw Error('no token received!');
+					console.log(res.status);
+					if (res.status === 201) {
+						setUserData({ name, email, password });
 					}
 				})
 				.catch((err: any) => {
 					console.log(err);
 				});
 		}
-	}, [token]);
+	}, [email, name, password]);
 
-	return { provideToken, userData };
+	return { provideDetails, userData };
 };

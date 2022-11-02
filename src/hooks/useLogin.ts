@@ -2,7 +2,6 @@ import { IUser } from '@user-types';
 import axios from 'axios';
 import { decode } from 'jsonwebtoken';
 import { useEffect, useState } from 'react';
-import { hashPassword } from '../functions/hasher.function';
 import { dataEndPoint } from '../helpers/misc/config';
 
 export const useLogin = () => {
@@ -17,11 +16,10 @@ export const useLogin = () => {
 
 	useEffect(() => {
 		if (email && password) {
-			hashPassword(password).then((hashed: string) => {
-				axios
+			axios
 					.post(
 						`${dataEndPoint}/api/v1/login`,
-						{ email, password: hashed },
+						{ email, password },
 						{
 							headers: {
 								'content-type': 'application/json',
@@ -34,7 +32,6 @@ export const useLogin = () => {
 						setUserData(decodedToken);
 						console.log(decodedToken);
 					});
-			});
 		}
 	}, [email, password]);
 
