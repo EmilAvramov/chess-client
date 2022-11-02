@@ -17,21 +17,13 @@ export const useLogin = () => {
 	useEffect(() => {
 		if (email && password) {
 			axios
-					.post(
-						`${dataEndPoint}/api/v1/login`,
-						{ email, password },
-						{
-							headers: {
-								'content-type': 'application/json',
-							},
-						}
-					)
-					.then((res: any) => {
-						console.log(res.data.token);
-						const decodedToken = decode(res.data.token) as IUser;
-						setUserData(decodedToken);
-						console.log(decodedToken);
-					});
+				.post(`${dataEndPoint}/api/v1/login`, { email, password })
+				.then((res: any) => {
+					console.log(res.data.access_token);
+					const decodedToken = decode(res.data.access_token) as IUser;
+					setUserData(decodedToken);
+					console.log(decodedToken);
+				});
 		}
 	}, [email, password]);
 

@@ -18,15 +18,7 @@ export const useRegister = () => {
 	useEffect(() => {
 		if (email && password && name) {
 			axios
-				.post(
-					`${dataEndPoint}/api/v1/users`,
-					{ name, email, password },
-					{
-						headers: {
-							'content-type': 'application/json',
-						},
-					}
-				)
+				.post(`${dataEndPoint}/api/v1/users`, { name, email, password })
 				.then((res: any) => {
 					console.log(res.status);
 					if (res.status === 201) {
