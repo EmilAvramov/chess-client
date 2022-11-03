@@ -19,10 +19,8 @@ export const useLogin = () => {
 			axios
 				.post(`${dataEndPoint}/api/v1/login`, { email, password })
 				.then((res: any) => {
-					console.log(res.data.access_token);
 					const decodedToken = decode(res.data.access_token) as IUser;
 					setUserData(decodedToken);
-					console.log(decodedToken);
 				});
 		}
 	}, [email, password]);

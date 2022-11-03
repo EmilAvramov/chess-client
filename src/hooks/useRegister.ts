@@ -20,7 +20,6 @@ export const useRegister = () => {
 			axios
 				.post(`${dataEndPoint}/api/v1/users`, { name, email, password })
 				.then((res: any) => {
-					console.log(res.status);
 					if (res.status === 201) {
 						setUserData({ name, email, password });
 					}
