@@ -1,4 +1,4 @@
-import { IUser } from '@user-types';
+import { IUserDetails, IUserResponse } from '@user-types';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { decode } from 'jsonwebtoken';
 import { useEffect, useState } from 'react';
@@ -7,7 +7,7 @@ import { dataEndPoint } from '../helpers/misc/config';
 export const useLogin = () => {
 	const [email, setEmail] = useState<string>('');
 	const [password, setPassword] = useState<string>('');
-	const [userData, setUserData] = useState<IUser>();
+	const [userData, setUserData] = useState<IUserDetails>();
 	const [error, setError] = useState<string>('');
 
 	const provideDetails = (email: string, password: string) => {
@@ -23,8 +23,12 @@ export const useLogin = () => {
 					if (res.status === 200) {
 						const decodedToken = decode(
 							res.data.access_token
-						) as IUser;
-						setUserData(decodedToken);
+						) as IUserResponse;
+						setUserData({
+							name: decodedToken.name,
+							email: decodedToken.email,
+							token: res.data.access_token,
+						});
 					}
 				})
 				.catch((err: AxiosError) => {

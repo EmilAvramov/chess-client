@@ -1,4 +1,4 @@
-import { IUser } from '@user-types';
+import { IUserDetails } from '@user-types';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { useEffect, useState } from 'react';
 import { dataEndPoint } from '../helpers/misc/config';
@@ -7,7 +7,7 @@ export const useRegister = () => {
 	const [email, setEmail] = useState<string>('');
 	const [name, setName] = useState<string>('');
 	const [password, setPassword] = useState<string>('');
-	const [userData, setUserData] = useState<IUser>();
+	const [userData, setUserData] = useState<IUserDetails>();
 	const [error, setError] = useState<string>('');
 
 	const provideDetails = (name: string, email: string, password: string) => {
@@ -22,7 +22,11 @@ export const useRegister = () => {
 				.post(`${dataEndPoint}/api/v1/users`, { name, email, password })
 				.then((res: AxiosResponse) => {
 					if (res.status === 201) {
-						setUserData({ name, email, password });
+						setUserData({
+							name,
+							email,
+							token: res.data.access_token,
+						});
 					}
 				})
 				.catch((err: AxiosError) => {
