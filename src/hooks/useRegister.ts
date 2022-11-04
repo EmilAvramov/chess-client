@@ -1,5 +1,6 @@
-import { IUserDetails } from '@user-types';
+import { IUserDetails, IUserResponse } from '@user-types';
 import axios, { AxiosError, AxiosResponse } from 'axios';
+import { decode } from 'jsonwebtoken';
 import { useEffect, useState } from 'react';
 import { dataEndPoint } from '../helpers/misc/config';
 
@@ -22,9 +23,12 @@ export const useRegister = () => {
 				.post(`${dataEndPoint}/api/v1/users`, { name, email, password })
 				.then((res: AxiosResponse) => {
 					if (res.status === 201) {
+						const decodedToken = decode(
+							res.data.access_token
+						) as IUserResponse;
 						setUserData({
-							name,
-							email,
+							name: decodedToken.name,
+							email: decodedToken.email,
 							token: res.data.access_token,
 						});
 					}

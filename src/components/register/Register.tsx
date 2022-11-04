@@ -1,4 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
@@ -54,6 +55,12 @@ const Register = () => {
 		provideDetails(data.name, data.email, data.password);
 		console.log(userData);
 	};
+
+	useEffect(() => {
+		localStorage.setItem('name', JSON.stringify(userData?.name));
+		localStorage.setItem('email', JSON.stringify(userData?.email));
+		localStorage.setItem('token', JSON.stringify(userData?.token));
+	}, [userData]);
 
 	return (
 		<main className={styles['register__wrapper']}>

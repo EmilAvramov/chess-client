@@ -6,6 +6,8 @@ import * as Yup from 'yup';
 import { emailPattern } from '../../helpers/misc/patterns';
 import styles from '../../styles/components/Login.module.scss';
 import { useLogin } from '../../hooks/useLogin';
+import { useEffect } from 'react';
+import { useAuth } from '../../contexts/Auth.context';
 
 type FormValues = {
 	email: string;
@@ -14,6 +16,7 @@ type FormValues = {
 
 const Login: React.FC = (): JSX.Element => {
 	const { userData, provideDetails, error } = useLogin();
+	const { setCurrentUser } = useAuth()
 
 	const validationSchema = Yup.object().shape({
 		email: Yup.string()
@@ -36,6 +39,12 @@ const Login: React.FC = (): JSX.Element => {
 		provideDetails(data.email, data.password);
 		console.log(userData);
 	};
+
+	useEffect(() => {
+		localStorage.setItem('name', JSON.stringify(userData?.name));
+		localStorage.setItem('email', JSON.stringify(userData?.email));
+		localStorage.setItem('token', JSON.stringify(userData?.token));
+	}, [userData]);
 
 	return (
 		<main className={styles['login__wrapper']}>
