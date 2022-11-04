@@ -23,14 +23,20 @@ export const useRegister = () => {
 				.then((res: AxiosResponse) => {
 					if (res.status === 201) {
 						setUserData({ name, email, password });
-					} else if (res.status === 409) {
-						setError('Email already taken');
-					} else if (res.status === 400 || res.status === 500) {
-						setError('Something went wrong, please try again');
 					}
 				})
 				.catch((err: AxiosError) => {
-					setError(err.message);
+					console.log(err);
+					if (err.response?.status === 409) {
+						setError('Email already taken');
+					} else if (
+						err.response?.status === 400 ||
+						err.response?.status === 500
+					) {
+						setError('Something went wrong, please try again');
+					} else {
+						setError(err.message);
+					}
 				});
 		}
 	}, [email, name, password]);

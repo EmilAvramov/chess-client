@@ -34,7 +34,7 @@ const Register = () => {
 			),
 	});
 
-	const { provideDetails, userData } = useRegister();
+	const { userData, provideDetails, error } = useRegister();
 
 	const {
 		register,
@@ -61,6 +61,7 @@ const Register = () => {
 				onSubmit={handleSubmit(submitData)}
 				className={styles['register__form']}
 			>
+				{error && <p className={styles['error__message']}>{error}</p>}
 				<input
 					{...register('name', {
 						required: {

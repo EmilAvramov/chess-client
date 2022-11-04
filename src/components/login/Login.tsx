@@ -13,7 +13,7 @@ type FormValues = {
 };
 
 const Login: React.FC = (): JSX.Element => {
-	const { provideDetails, userData } = useLogin()
+	const { userData, provideDetails, error } = useLogin();
 
 	const validationSchema = Yup.object().shape({
 		email: Yup.string()
@@ -33,8 +33,8 @@ const Login: React.FC = (): JSX.Element => {
 	});
 
 	const submitForm = (data: FormValues) => {
-		provideDetails(data.email, data.password)
-		console.log(userData)
+		provideDetails(data.email, data.password);
+		console.log(userData);
 	};
 
 	return (
@@ -43,6 +43,7 @@ const Login: React.FC = (): JSX.Element => {
 				onSubmit={handleSubmit(submitForm)}
 				className={styles['login__form']}
 			>
+				{error && <p className={styles['error__message']}>{error}</p>}
 				<input
 					{...register('email')}
 					type='text'

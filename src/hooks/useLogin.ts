@@ -25,14 +25,19 @@ export const useLogin = () => {
 							res.data.access_token
 						) as IUser;
 						setUserData(decodedToken);
-					} else if (res.status === 401) {
-						setError('Incorrect credentials');
-					} else if (res.status === 400 || res.status === 500) {
-						setError('Something went wrong, please try again');
 					}
 				})
 				.catch((err: AxiosError) => {
-					setError(err.message);
+					if (err.response?.status === 401) {
+						setError('Incorrect credentials');
+					} else if (
+						err.response?.status === 400 ||
+						err.response?.status === 500
+					) {
+						setError('Something went wrong, please try again');
+					} else {
+						setError(err.message);
+					}
 				});
 		}
 	}, [email, password]);

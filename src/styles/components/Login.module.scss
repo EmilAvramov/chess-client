@@ -40,5 +40,8 @@
 				@include text.format-link($color: red);
 			}
 		}
+		.error__message {
+			color: red;
+		}
 	}
 }
