@@ -16,7 +16,7 @@ type FormValues = {
 
 const Login: React.FC = (): JSX.Element => {
 	const { userData, provideDetails, error } = useLogin();
-	const { setCurrentUser } = useAuth()
+	const { setCurrentUser } = useAuth();
 
 	const validationSchema = Yup.object().shape({
 		email: Yup.string()
@@ -41,9 +41,13 @@ const Login: React.FC = (): JSX.Element => {
 	};
 
 	useEffect(() => {
-		localStorage.setItem('name', JSON.stringify(userData?.name));
-		localStorage.setItem('email', JSON.stringify(userData?.email));
-		localStorage.setItem('token', JSON.stringify(userData?.token));
+		if (userData) {
+			setCurrentUser({
+				name: userData.name,
+				email: userData.email,
+				token: userData.token,
+			});
+		}
 	}, [userData]);
 
 	return (
