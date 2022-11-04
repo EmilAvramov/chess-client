@@ -9,6 +9,7 @@ export const useLogin = () => {
 	const [password, setPassword] = useState<string>('');
 	const [userData, setUserData] = useState<IUserDetails>();
 	const [error, setError] = useState<string>('');
+	const [loading, setLoading] = useState<boolean>(false);
 
 	const provideDetails = (email: string, password: string) => {
 		setEmail(email);
@@ -17,19 +18,22 @@ export const useLogin = () => {
 
 	useEffect(() => {
 		if (email && password) {
+			setLoading(true);
 			axios
 				.post(`${dataEndPoint}/api/v1/login`, { email, password })
 				.then((res: AxiosResponse) => {
-					if (res.status === 200) {
-						const decodedToken = decode(
-							res.data.access_token
-						) as IUserResponse;
-						setUserData({
-							name: decodedToken.name,
-							email: decodedToken.email,
-							token: res.data.access_token,
-						});
-					}
+					const decodedToken = decode(
+						res.data.access_token
+					) as IUserResponse;
+					setUserData({
+						name: decodedToken.name,
+						email: decodedToken.email,
+						token: res.data.access_token,
+					});
+					sessionStorage.setItem('name', JSON.stringify(decodedToken.name));
+					sessionStorage.setItem('email', JSON.stringify(decodedToken.email));
+					sessionStorage.setItem('token', JSON.stringify(res.data.access_token));
+					setLoading(false);
 				})
 				.catch((err: AxiosError) => {
 					if (err.response?.status === 401) {
@@ -42,9 +46,10 @@ export const useLogin = () => {
 					} else {
 						setError(err.message);
 					}
+					setLoading(false);
 				});
 		}
 	}, [email, password]);
 
-	return { userData, provideDetails, error };
+	return { userData, provideDetails, error, loading };
 };

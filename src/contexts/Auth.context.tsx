@@ -1,11 +1,10 @@
 import { AuthChildren } from '@context-types';
-import { IUserDetails } from '@user-types';
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 const useValue = () => {
-	const [currentUser, setCurrentUser] = useState<IUserDetails | null>(null);
+	const [auth, setAuth] = useState<boolean>(false);
 
-	return { currentUser, setCurrentUser };
+	return { auth, setAuth };
 };
 
 const AuthContext = createContext({} as ReturnType<typeof useValue>);
@@ -13,25 +12,10 @@ const AuthContext = createContext({} as ReturnType<typeof useValue>);
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider: React.FC<AuthChildren> = ({ children }) => {
-	const [currentUser, setCurrentUser] = useState<IUserDetails | null>(null);
-
-	useEffect(() => {
-		if (currentUser) {
-			sessionStorage.setItem('name', JSON.stringify(currentUser?.name));
-			sessionStorage.setItem('email', JSON.stringify(currentUser?.email));
-			sessionStorage.setItem('token', JSON.stringify(currentUser?.token));
-		} else {
-			sessionStorage.clear();
-		}
-	}, [
-		currentUser,
-		currentUser?.email,
-		currentUser?.name,
-		currentUser?.token,
-	]);
+	const [auth, setAuth] = useState<boolean>(false);
 
 	return (
-		<AuthContext.Provider value={{ currentUser, setCurrentUser }}>
+		<AuthContext.Provider value={{ auth, setAuth }}>
 			{children}
 		</AuthContext.Provider>
 	);

@@ -1,8 +1,9 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
+import { useAuth } from '../../contexts/Auth.context';
 import { emailPattern, passwordPattern } from '../../helpers/misc/patterns';
 import { useRegister } from '../../hooks/useRegister';
 
@@ -36,6 +37,8 @@ const Register = () => {
 	});
 
 	const { userData, provideDetails, error } = useRegister();
+	const { setAuth } = useAuth();
+	const navigate = useNavigate();
 
 	const {
 		register,
@@ -57,10 +60,11 @@ const Register = () => {
 	};
 
 	useEffect(() => {
-		localStorage.setItem('name', JSON.stringify(userData?.name));
-		localStorage.setItem('email', JSON.stringify(userData?.email));
-		localStorage.setItem('token', JSON.stringify(userData?.token));
-	}, [userData]);
+		if (userData) {
+			setAuth(true);
+			navigate('/');
+		}
+	}, [navigate, setAuth, userData]);
 
 	return (
 		<main className={styles['register__wrapper']}>

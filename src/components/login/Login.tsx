@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 
@@ -16,7 +16,8 @@ type FormValues = {
 
 const Login: React.FC = (): JSX.Element => {
 	const { userData, provideDetails, error } = useLogin();
-	const { setCurrentUser } = useAuth();
+	const { setAuth } = useAuth();
+	const navigate = useNavigate();
 
 	const validationSchema = Yup.object().shape({
 		email: Yup.string()
@@ -37,18 +38,14 @@ const Login: React.FC = (): JSX.Element => {
 
 	const submitForm = (data: FormValues) => {
 		provideDetails(data.email, data.password);
-		console.log(userData);
 	};
 
 	useEffect(() => {
 		if (userData) {
-			setCurrentUser({
-				name: userData.name,
-				email: userData.email,
-				token: userData.token,
-			});
+			setAuth(true);
+			navigate('/');
 		}
-	}, [userData]);
+	}, [navigate, setAuth, userData]);
 
 	return (
 		<main className={styles['login__wrapper']}>
