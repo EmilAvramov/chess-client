@@ -6,7 +6,7 @@ import ChatFooter from './ChatFooter.component';
 import { IChat, message } from '@chat-types';
 import styles from '../../styles/components/Chat.module.scss';
 
-const Chat: FC<IChat> = ({ connected, socket }): JSX.Element => {
+const Chat: FC<IChat> = ({ connected, socket, user }): JSX.Element => {
 	const [messages, setMessages] = useState<message[]>([]);
 	const lastRef = useRef<HTMLDivElement>(null);
 
@@ -26,6 +26,7 @@ const Chat: FC<IChat> = ({ connected, socket }): JSX.Element => {
 						messages={messages}
 						messageRef={lastRef}
 						socket={socket}
+						user={user}
 					/>
 					<ChatFooter captureMessage={storeMessage} socket={socket} />
 				</div>

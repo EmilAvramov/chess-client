@@ -23,7 +23,7 @@ const Login: React.FC = (): JSX.Element => {
 	});
 
 	const { userData, provideDetails, error } = useLogin();
-	const { setAuth } = useAuth();
+	const { setAuth, setUser } = useAuth();
 	const navigate = useNavigate();
 
 	const {
@@ -43,9 +43,10 @@ const Login: React.FC = (): JSX.Element => {
 	useEffect(() => {
 		if (userData) {
 			setAuth(true);
+			setUser(userData);
 			navigate('/');
 		}
-	}, [navigate, setAuth, userData]);
+	}, [navigate, setAuth, setUser, userData]);
 
 	return (
 		<main className={styles['login__wrapper']}>
@@ -83,7 +84,7 @@ const Login: React.FC = (): JSX.Element => {
 					</p>
 					<Link to='/register' className={styles['login__form_link']}>
 						Register now.
-					</Link>{' '}
+					</Link>
 				</div>
 			</form>
 		</main>

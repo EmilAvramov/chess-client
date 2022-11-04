@@ -37,7 +37,7 @@ const Register: React.FC = (): JSX.Element => {
 	});
 
 	const { userData, provideDetails, error } = useRegister();
-	const { setAuth } = useAuth();
+	const { setAuth, setUser } = useAuth();
 	const navigate = useNavigate();
 
 	const {
@@ -61,9 +61,10 @@ const Register: React.FC = (): JSX.Element => {
 	useEffect(() => {
 		if (userData) {
 			setAuth(true);
+			setUser(userData);
 			navigate('/');
 		}
-	}, [navigate, setAuth, userData]);
+	}, [navigate, setAuth, setUser, userData]);
 
 	return (
 		<main className={styles['register__wrapper']}>

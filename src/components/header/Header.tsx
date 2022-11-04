@@ -4,7 +4,7 @@ import { useAuth } from '../../contexts/Auth.context';
 import styles from '../../styles/components/Header.module.scss';
 
 const Header = () => {
-	const { auth, setAuth } = useAuth();
+	const { auth, setAuth, user } = useAuth();
 
 	console.log(auth);
 
@@ -12,6 +12,7 @@ const Header = () => {
 		<header className={styles['header__wrapper']}>
 			<nav>
 				<ul className={styles['header__list']}>
+					{user && <p>Hello, {user.name}</p>}
 					<li className={styles['header__list_item']}>
 						<NavLink
 							to={'/'}
