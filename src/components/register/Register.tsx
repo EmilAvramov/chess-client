@@ -16,7 +16,7 @@ type FormValues = {
 	rePass: string;
 };
 
-const Register = () => {
+const Register: React.FC = (): JSX.Element => {
 	const validationSchema = Yup.object().shape({
 		name: Yup.string().required('Field is required'),
 		email: Yup.string()
@@ -56,7 +56,6 @@ const Register = () => {
 		password: string;
 	}) => {
 		provideDetails(data.name, data.email, data.password);
-		console.log(userData);
 	};
 
 	useEffect(() => {

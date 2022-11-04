@@ -15,16 +15,16 @@ type FormValues = {
 };
 
 const Login: React.FC = (): JSX.Element => {
-	const { userData, provideDetails, error } = useLogin();
-	const { setAuth } = useAuth();
-	const navigate = useNavigate();
-
 	const validationSchema = Yup.object().shape({
 		email: Yup.string()
 			.matches(emailPattern, { message: 'Enter a valid email' })
 			.required('Field is required'),
 		password: Yup.string().required('Field is required'),
 	});
+
+	const { userData, provideDetails, error } = useLogin();
+	const { setAuth } = useAuth();
+	const navigate = useNavigate();
 
 	const {
 		register,
