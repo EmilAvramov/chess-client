@@ -8,6 +8,7 @@ const ChatBody: FC<IChatBody> = ({
 	messages,
 	messageRef,
 	socket,
+	socketID,
 	user,
 }): JSX.Element => {
 	const navigate = useNavigate();
@@ -16,6 +17,7 @@ const ChatBody: FC<IChatBody> = ({
 		navigate('/');
 	};
 
+	console.log(socketID)
 	console.log(socket)
 
 

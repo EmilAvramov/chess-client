@@ -1,4 +1,6 @@
 declare module '@chat-types' {
+	import { ClientToServerEvents, ServerToClientEvents } from '@types-socket';
+	import { Socket } from 'socket.io-client';
 	import { IUserDetails } from '@user-types';
 
 	export interface message {
@@ -8,7 +10,8 @@ declare module '@chat-types' {
 	}
 
 	export interface IChat {
-		socket: string;
+		socket: Socket<ServerToClientEvents, ClientToServerEvents> | undefined;
+		socketID: string;
 		connected: boolean;
 		user: IUserDetails | null;
 	}
@@ -16,12 +19,13 @@ declare module '@chat-types' {
 	export interface IChatBody {
 		messages: message[];
 		messageRef: LegacyRef<HTMLDivElement>;
-		socket: string;
+		socket: Socket<ServerToClientEvents, ClientToServerEvents> | undefined;
+		socketID: string;
 		user: IUserDetails | null;
 	}
 
 	export interface IChatFooter {
 		captureMessage: (message: message) => void;
-		socket: string;
+		socket: Socket<ServerToClientEvents, ClientToServerEvents> | undefined;
 	}
 }

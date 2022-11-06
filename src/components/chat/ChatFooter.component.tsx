@@ -3,7 +3,10 @@ import { FC, useState } from 'react';
 import { IChatFooter } from '@chat-types';
 import styles from '../../styles/components/Chat.module.scss';
 
-const ChatFooter: FC<IChatFooter> = ({ captureMessage }): JSX.Element => {
+const ChatFooter: FC<IChatFooter> = ({
+	captureMessage,
+	socket,
+}): JSX.Element => {
 	const [message, setMessage] = useState<string>('');
 	const [counter, setCounter] = useState<number>(0);
 	const [user, setUser] = useState<string>('myself');
@@ -17,6 +20,7 @@ const ChatFooter: FC<IChatFooter> = ({ captureMessage }): JSX.Element => {
 		}
 		setCounter((counter) => counter + 1);
 		captureMessage({ id: counter, name: user, text: message });
+		socket?.emit('message', message);
 		setMessage('');
 	};
 	return (

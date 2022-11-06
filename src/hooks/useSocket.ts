@@ -11,7 +11,6 @@ const useSocket = () => {
 
 	useEffect(() => {
 		const socket = io(socketEndPoint);
-		setSocket(socket);
 
 		socket.on('connect', () => {
 			console.log('connected');
@@ -32,6 +31,8 @@ const useSocket = () => {
 		});
 
 		socket.on('ping', () => console.log('pinged'));
+
+		setSocket(socket);
 
 		return () => {
 			socket.off('connect');

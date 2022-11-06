@@ -7,7 +7,7 @@ import styles from '../../styles/components/Chess.module.scss';
 import { useAuth } from '../../contexts/Auth.context';
 
 const Chess: React.FC = (): JSX.Element => {
-	const { isConnected, socketID } = useSocket();
+	const { socket, isConnected, socketID } = useSocket();
 	const { board, end } = useChessData();
 	const { user } = useAuth();
 
@@ -16,7 +16,12 @@ const Chess: React.FC = (): JSX.Element => {
 	return (
 		<main className={styles['chess__wrapper']}>
 			<ChessBoard pieces={board} isOver={end} />
-			<Chat socket={socketID} connected={isConnected} user={user} />
+			<Chat
+				socket={socket}
+				socketID={socketID}
+				connected={isConnected}
+				user={user}
+			/>
 		</main>
 	);
 };
