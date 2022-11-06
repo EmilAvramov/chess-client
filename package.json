@@ -53,6 +53,8 @@
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
     "@types/jsonwebtoken": "^8.5.9",
+    "@types/socket.io": "^3.0.2",
+    "@types/socket.io-client": "^3.0.0",
     "assert": "^2.0.0",
     "browserify-zlib": "^0.2.0",
     "dotenv": "^16.0.3",
