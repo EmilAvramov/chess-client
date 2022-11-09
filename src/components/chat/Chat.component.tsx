@@ -15,8 +15,8 @@ const Chat: FC<IChat> = ({
 	const [messages, setMessages] = useState<message[]>([]);
 	const lastRef = useRef<HTMLDivElement>(null);
 
-	const storeMessage = (message: message) => {
-		setMessages((messages) => [...messages, message]);
+	const storeMessage = (messages: message[]) => {
+		setMessages(messages);
 	};
 
 	useEffect(() => {

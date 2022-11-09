@@ -6,7 +6,8 @@ declare module '@types-socket' {
 	}
 
 	interface ClientToServerEvents {
-		message: (msg: string) => void;
+		message: (msg: string, user: string) => void;
+		getMessages: () => message[];
 	}
 
 	interface InterServerEvents {

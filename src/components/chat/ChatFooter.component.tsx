@@ -2,25 +2,22 @@ import { FC, useState } from 'react';
 
 import { IChatFooter } from '@chat-types';
 import styles from '../../styles/components/Chat.module.scss';
+import { useAuth } from '../../contexts/Auth.context';
 
 const ChatFooter: FC<IChatFooter> = ({
 	captureMessage,
 	socket,
 }): JSX.Element => {
 	const [message, setMessage] = useState<string>('');
-	const [counter, setCounter] = useState<number>(0);
-	const [user, setUser] = useState<string>('myself');
+
+	const { user } = useAuth();
 
 	const handleSendMessage = (e: any) => {
 		e.preventDefault();
-		if (counter % 2 === 0) {
-			setUser('myself');
-		} else {
-			setUser('other');
-		}
-		setCounter((counter) => counter + 1);
-		captureMessage({ id: counter, name: user, text: message });
-		socket?.emit('message', message);
+		socket?.emit('message', message, user!.name);
+		const messages = socket?.emit('getMessages');
+		captureMessage(messages)
+		console.log(messages);
 		setMessage('');
 	};
 	return (

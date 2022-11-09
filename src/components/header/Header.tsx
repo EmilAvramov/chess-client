@@ -6,7 +6,7 @@ import styles from '../../styles/components/Header.module.scss';
 const Header = () => {
 	const { auth, setAuth, user } = useAuth();
 
-	console.log(auth);
+	console.log(user);
 
 	return (
 		<header className={styles['header__wrapper']}>

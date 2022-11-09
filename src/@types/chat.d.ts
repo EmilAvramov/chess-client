@@ -4,9 +4,10 @@ declare module '@chat-types' {
 	import { IUserDetails } from '@user-types';
 
 	export interface message {
-		id: number;
-		name: string;
-		text: string;
+		id: string;
+		user: string;
+		message: string;
+		time: number;
 	}
 
 	export interface IChat {
@@ -25,7 +26,7 @@ declare module '@chat-types' {
 	}
 
 	export interface IChatFooter {
-		captureMessage: (message: message) => void;
+		captureMessage: (messages: message[]) => void;
 		socket: Socket<ServerToClientEvents, ClientToServerEvents> | undefined;
 	}
 }
