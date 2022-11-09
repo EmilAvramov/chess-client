@@ -15,8 +15,6 @@ const ChatBody: FC<IChatBody> = ({
 		navigate('/');
 	};
 
-	console.log(messages)
-
 	return (
 		<>
 			<header className={styles['body__header']}>

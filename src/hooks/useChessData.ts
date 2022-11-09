@@ -79,7 +79,7 @@ const useChessData = () => {
 		getData();
 	}, [current, game, newGame, target]);
 
-	return { board, end, loading, error };
+	return { game, board, end, loading, error };
 };
 
 export default useChessData;
