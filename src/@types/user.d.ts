@@ -6,6 +6,7 @@ declare module '@user-types' {
 	}
 
 	export interface IUserResponse {
+		_id: string;
 		fresh: boolean;
 		iat: number;
 		jti: string;
@@ -18,6 +19,7 @@ declare module '@user-types' {
 	}
 
 	export interface IUserDetails {
+		id: string;
 		name: string;
 		email: string;
 		token: string;

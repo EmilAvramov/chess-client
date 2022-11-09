@@ -10,6 +10,7 @@ export const useRegister = () => {
 	const [password, setPassword] = useState<string>('');
 	const [userData, setUserData] = useState<IUserDetails>();
 	const [error, setError] = useState<string>('');
+	const [loading, setLoading] = useState<boolean>(false)
 
 	const provideDetails = (name: string, email: string, password: string) => {
 		setEmail(email);
@@ -19,6 +20,7 @@ export const useRegister = () => {
 
 	useEffect(() => {
 		if (email && password && name) {
+			setLoading(true)
 			axios
 				.post(`${dataEndPoint}/api/v1/users`, { name, email, password })
 				.then((res: AxiosResponse) => {
@@ -27,10 +29,16 @@ export const useRegister = () => {
 							res.data.access_token
 						) as IUserResponse;
 						setUserData({
+							id: decodedToken._id,
 							name: decodedToken.name,
 							email: decodedToken.email,
 							token: res.data.access_token,
 						});
+						sessionStorage.setItem('id', JSON.stringify(decodedToken._id))
+						sessionStorage.setItem('name', JSON.stringify(decodedToken.name));
+						sessionStorage.setItem('email', JSON.stringify(decodedToken.email));
+						sessionStorage.setItem('token', JSON.stringify(res.data.access_token));
+						setLoading(false);
 					}
 				})
 				.catch((err: AxiosError) => {
@@ -45,9 +53,10 @@ export const useRegister = () => {
 					} else {
 						setError(err.message);
 					}
+					setLoading(true)
 				});
 		}
 	}, [email, name, password]);
 
-	return { userData, provideDetails, error };
+	return { userData, provideDetails, error, loading };
 };

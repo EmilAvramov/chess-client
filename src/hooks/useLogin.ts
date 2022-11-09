@@ -26,10 +26,12 @@ export const useLogin = () => {
 						res.data.access_token
 					) as IUserResponse;
 					setUserData({
+						id: decodedToken._id,
 						name: decodedToken.name,
 						email: decodedToken.email,
 						token: res.data.access_token,
 					});
+					sessionStorage.setItem('id', JSON.stringify(decodedToken._id))
 					sessionStorage.setItem('name', JSON.stringify(decodedToken.name));
 					sessionStorage.setItem('email', JSON.stringify(decodedToken.email));
 					sessionStorage.setItem('token', JSON.stringify(res.data.access_token));

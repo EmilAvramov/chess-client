@@ -6,9 +6,20 @@ import ChatFooter from './ChatFooter.component';
 import { IChat, message } from '@chat-types';
 import styles from '../../styles/components/Chat.module.scss';
 
-const Chat: FC<IChat> = ({ connected, socket, user }): JSX.Element => {
+const Chat: FC<IChat> = ({
+	connected,
+	socket,
+	socketID,
+	user,
+}): JSX.Element => {
 	const [messages, setMessages] = useState<message[]>([]);
 	const lastRef = useRef<HTMLDivElement>(null);
+
+	if (connected) {
+		console.log(`Connected with socket ID: ${socketID}`);
+	} else {
+		console.log('Chat not connected');
+	}
 
 	useEffect(() => {
 		socket?.on('message', (message: message) =>
@@ -19,7 +30,7 @@ const Chat: FC<IChat> = ({ connected, socket, user }): JSX.Element => {
 
 	return (
 		<>
-			{connected ? (
+			{user ? (
 				<div className={styles['chat__wrapper']}>
 					<ChatBody
 						messages={messages}

@@ -12,7 +12,6 @@ const Chess: React.FC = (): JSX.Element => {
 	const { game, board, end } = useChessData();
 	const { user } = useAuth();
 
-	console.log(isConnected, socketID);
 	useEffect(() => {
 		socket?.on('connect', () => {
 			socket?.emit('join', game);

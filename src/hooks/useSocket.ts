@@ -13,7 +13,6 @@ const useSocket = () => {
 		const socket = io(socketEndPoint);
 
 		socket.on('connect', () => {
-			console.log('connected');
 			socket.emit('getMessages');
 		});
 
