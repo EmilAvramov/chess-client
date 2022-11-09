@@ -15,6 +15,8 @@ const ChatBody: FC<IChatBody> = ({
 		navigate('/');
 	};
 
+	console.log(messages)
+
 	return (
 		<>
 			<header className={styles['body__header']}>
@@ -28,31 +30,42 @@ const ChatBody: FC<IChatBody> = ({
 			</header>
 
 			<div className={styles['body__container']}>
-				{messages.map((value: message) =>
-					value.id % 2 !== 0 || value.id === 0 ? (
-						<div
-							className={styles['body__container_message']}
-							key={value.id}
-						>
-							<p className={styles['message__sender']}>
-								{value.name}
-							</p>
-							<div className={styles['message__content']}>
-								<p>{value.text}</p>
-							</div>
+				{messages.map((message: message) => (
+					// value.id % 2 !== 0 || value.id === 0 ? (
+					// 	<div
+					// 		className={styles['body__container_message']}
+					// 		key={value.id}
+					// 	>
+					// 		<p className={styles['message__sender']}>
+					// 			{value.name}
+					// 		</p>
+					// 		<div className={styles['message__content']}>
+					// 			<p>{value.text}</p>
+					// 		</div>
+					// 	</div>
+					// ) : (
+					// 	<div
+					// 		className={styles['body__container_message']}
+					// 		key={value.id}
+					// 	>
+					// 		<p>{value.name}</p>
+					// 		<div className={styles['message__recipient']}>
+					// 			<p>{value.text}</p>
+					// 		</div>
+					// 	</div>
+					// )
+					<div
+						className={styles['body__container_message']}
+						key={message.id}
+					>
+						<p className={styles['message__sender']}>
+							{message.user}
+						</p>
+						<div className={styles['message__content']}>
+							<p>{message.message}</p>
 						</div>
-					) : (
-						<div
-							className={styles['body__container_message']}
-							key={value.id}
-						>
-							<p>{value.name}</p>
-							<div className={styles['message__recipient']}>
-								<p>{value.text}</p>
-							</div>
-						</div>
-					)
-				)}
+					</div>
+				))}
 
 				<div className={styles['message__status']}>
 					<p>Someone is typing...</p>

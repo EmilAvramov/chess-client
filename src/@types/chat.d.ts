@@ -20,13 +20,10 @@ declare module '@chat-types' {
 	export interface IChatBody {
 		messages: message[];
 		messageRef: LegacyRef<HTMLDivElement>;
-		socket: Socket<ServerToClientEvents, ClientToServerEvents> | undefined;
-		socketID: string;
 		user: IUserDetails | null;
 	}
 
 	export interface IChatFooter {
-		captureMessage: (messages: message[]) => void;
 		socket: Socket<ServerToClientEvents, ClientToServerEvents> | undefined;
 	}
 }

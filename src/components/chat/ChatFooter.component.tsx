@@ -4,10 +4,7 @@ import { IChatFooter } from '@chat-types';
 import styles from '../../styles/components/Chat.module.scss';
 import { useAuth } from '../../contexts/Auth.context';
 
-const ChatFooter: FC<IChatFooter> = ({
-	captureMessage,
-	socket,
-}): JSX.Element => {
+const ChatFooter: FC<IChatFooter> = ({ socket }): JSX.Element => {
 	const [message, setMessage] = useState<string>('');
 
 	const { user } = useAuth();
@@ -15,9 +12,6 @@ const ChatFooter: FC<IChatFooter> = ({
 	const handleSendMessage = (e: any) => {
 		e.preventDefault();
 		socket?.emit('message', message, user!.name);
-		const messages = socket?.emit('getMessages');
-		captureMessage(messages)
-		console.log(messages);
 		setMessage('');
 	};
 	return (
