@@ -65,12 +65,12 @@ const Square: FC<IPiece> = ({
 
 	const movement = (moves: number | IMove[]) => {
 		if (moves === 0) {
-			return false;
+			return true;
 		}
-		return true;
+		return false;
 	};
 
-	const [{ isOver }, drop] = useDrop(() => ({
+	const [{ isOver, canDrop }, drop] = useDrop(() => ({
 		accept: ['figure', 'empty'],
 		drop: (item: any) => {
 			move([item.row, item.col], [row, col]);
@@ -78,6 +78,7 @@ const Square: FC<IPiece> = ({
 		canDrop: () => movement(moves),
 		collect: (monitor) => ({
 			isOver: !!monitor.isOver(),
+			canDrop: !!monitor.canDrop(),
 		}),
 	}));
 
@@ -85,8 +86,6 @@ const Square: FC<IPiece> = ({
 		drop(el);
 		drag(el);
 	};
-
-	console.log(type, color, moves);
 
 	return (
 		<>
@@ -114,9 +113,10 @@ const Square: FC<IPiece> = ({
 					className={
 						!isOver
 							? styles['square__icon']
-							: `${styles['square__icon']} ${styles['square__icon_target']}`
+							: `${styles['square__icon']} ${styles['square__icon_pending']}`
 					}
 				/>
+				
 			)}
 		</>
 	);
