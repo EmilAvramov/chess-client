@@ -11,7 +11,7 @@ import Rook from '../../helpers/figures/Rook';
 import styles from '../../styles/components/Chess.module.scss';
 
 import { IBoardObject } from '@board-types';
-import { IPiece } from '@hook-types';
+import { IMove, IPiece } from '@hook-types';
 
 const Square: FC<IPiece> = ({
 	position,
@@ -63,11 +63,19 @@ const Square: FC<IPiece> = ({
 		};
 	});
 
+	const movement = (moves: number | IMove[]) => {
+		if (moves === 0) {
+			return false;
+		}
+		return true;
+	};
+
 	const [{ isOver }, drop] = useDrop(() => ({
 		accept: ['figure', 'empty'],
 		drop: (item: any) => {
 			move([item.row, item.col], [row, col]);
 		},
+		canDrop: () => movement(moves),
 		collect: (monitor) => ({
 			isOver: !!monitor.isOver(),
 		}),
@@ -77,6 +85,8 @@ const Square: FC<IPiece> = ({
 		drop(el);
 		drag(el);
 	};
+
+	console.log(type, color, moves);
 
 	return (
 		<>
