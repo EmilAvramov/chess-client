@@ -113,10 +113,11 @@ const Square: FC<IPiece> = ({
 					className={
 						!isOver
 							? styles['square__icon']
-							: `${styles['square__icon']} ${styles['square__icon_pending']}`
+							: !isOver && !canDrop
+							? `${styles['square__icon']} ${styles['square__icon_invalid']}`
+							: `${styles['square__icon']} ${styles['square__icon_valid']}`
 					}
 				/>
-				
 			)}
 		</>
 	);
