@@ -2,13 +2,15 @@ declare module '@chess-types' {
 	export interface IChessData {
 		data: [
 			{
-				game: [{
-					id: string;
-					isOver: boolean;
-				}];
+				game: [
+					{
+						id: string;
+						isOver: boolean;
+					}
+				];
 			},
-			{ 
-				pieces: IPiece[] 
+			{
+				pieces: IPiece[];
 			}
 		];
 	}
@@ -20,13 +22,7 @@ declare module '@chess-types' {
 		target: number;
 		row: number;
 		col: number;
-		moves: IMove[] | number;
+		moves: number[] | number;
 		move: (target: number[], dest: number[]) => void;
-	}
-
-	interface IMove {
-		position: number;
-		row: number;
-		col: number;
 	}
 }

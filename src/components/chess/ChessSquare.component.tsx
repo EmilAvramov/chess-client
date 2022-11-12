@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 
 import Pawn from '../../helpers/figures/Pawn';
@@ -23,7 +23,6 @@ const Square: FC<IPiece> = ({
 	moves,
 }): JSX.Element => {
 	const [background, setBackground] = useState<string>('');
-	const [positions, setPositions] = useState<number[] | 0>(0);
 
 	const pawns: IBoardObject = {
 		w: {
@@ -45,25 +44,11 @@ const Square: FC<IPiece> = ({
 		0: undefined,
 	};
 
-	useEffect(() => {
-		if (typeof moves !== 'number') {
-			let temp: number[] = [];
-			moves.forEach(
-				(move: { col: number; row: number; position: number }) => {
-					temp.push(move.position);
-				}
-			);
-			setPositions(temp);
-		} else {
-			setPositions(0);
-		}
-	}, [moves, move]);
-
 	const [{ isDragging }, drag] = useDrag(() => {
 		if (pawns[color]?.[type]) {
 			return {
 				type: 'figure',
-				item: { pos: position, col, row, moves: positions },
+				item: { position, col, row, moves },
 				collect: (monitor) => ({
 					isDragging: !!monitor.isDragging(),
 				}),
@@ -71,7 +56,7 @@ const Square: FC<IPiece> = ({
 		}
 		return {
 			type: 'empty',
-			item: { pos: position, col, row, moves: positions },
+			item: { position, col, row, moves },
 			collect: (monitor) => ({
 				isDragging: !!monitor.isDragging(),
 			}),
