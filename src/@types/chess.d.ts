@@ -1,4 +1,4 @@
-declare module '@hook-types' {
+declare module '@chess-types' {
 	export interface IChessData {
 		data: [
 			{

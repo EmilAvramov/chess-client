@@ -11,7 +11,7 @@ import Rook from '../../helpers/figures/Rook';
 import styles from '../../styles/components/Chess.module.scss';
 
 import { IBoardObject } from '@board-types';
-import { IMove, IPiece } from '@hook-types';
+import { IMove, IPiece } from '@chess-types';
 
 const Square: FC<IPiece> = ({
 	position,
@@ -48,7 +48,7 @@ const Square: FC<IPiece> = ({
 		if (pawns[color]?.[type]) {
 			return {
 				type: 'figure',
-				item: { pos: position, col, row },
+				item: { pos: position, col, row, moves },
 				collect: (monitor) => ({
 					isDragging: !!monitor.isDragging(),
 				}),
@@ -56,7 +56,7 @@ const Square: FC<IPiece> = ({
 		}
 		return {
 			type: 'empty',
-			item: { pos: position, col, row },
+			item: { pos: position, col, row, moves },
 			collect: (monitor) => ({
 				isDragging: !!monitor.isDragging(),
 			}),
@@ -73,7 +73,14 @@ const Square: FC<IPiece> = ({
 	const [{ isOver, canDrop }, drop] = useDrop(() => ({
 		accept: ['figure', 'empty'],
 		drop: (item: any) => {
-			move([item.row, item.col], [row, col]);
+			if (moves !== 0) {
+				item.moves.forEach((posX: any) => {
+					console.log({ ...posX });
+					if (row === posX.row && col === posX.col) {
+						move([item.row, item.col], [row, col]);
+					}
+				});
+			}
 		},
 		canDrop: () => movement(moves),
 		collect: (monitor) => ({

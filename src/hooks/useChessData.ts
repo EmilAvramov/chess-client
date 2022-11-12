@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { IChessData, IPiece } from '@hook-types';
+import { IChessData, IPiece } from '@chess-types';
 import { dataEndPoint } from '../helpers/misc/config';
 
 const useChessData = () => {

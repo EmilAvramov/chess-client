@@ -2,7 +2,7 @@ import { FC } from 'react';
 import Square from './ChessSquare.component';
 
 import styles from '../../styles/components/Chess.module.scss';
-import { IPiece } from '@hook-types';
+import { IPiece } from '@chess-types';
 import { IBoard } from '@board-types';
 
 const ChessBoard: FC<IBoard> = ({ pieces }): JSX.Element => {
