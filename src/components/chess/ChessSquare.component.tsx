@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 
 import Pawn from '../../helpers/figures/Pawn';
@@ -11,7 +11,7 @@ import Rook from '../../helpers/figures/Rook';
 import styles from '../../styles/components/Chess.module.scss';
 
 import { IBoardObject } from '@board-types';
-import { IMove, IPiece } from '@chess-types';
+import { IPiece } from '@chess-types';
 
 const Square: FC<IPiece> = ({
 	position,
@@ -23,6 +23,7 @@ const Square: FC<IPiece> = ({
 	moves,
 }): JSX.Element => {
 	const [background, setBackground] = useState<string>('');
+	const [positions, setPositions] = useState<number[] | 0>(0);
 
 	const pawns: IBoardObject = {
 		w: {
@@ -44,11 +45,25 @@ const Square: FC<IPiece> = ({
 		0: undefined,
 	};
 
+	useEffect(() => {
+		if (typeof moves !== 'number') {
+			let temp: number[] = [];
+			moves.forEach(
+				(move: { col: number; row: number; position: number }) => {
+					temp.push(move.position);
+				}
+			);
+			setPositions(temp);
+		} else {
+			setPositions(0);
+		}
+	}, [moves, move]);
+
 	const [{ isDragging }, drag] = useDrag(() => {
 		if (pawns[color]?.[type]) {
 			return {
 				type: 'figure',
-				item: { pos: position, col, row, moves },
+				item: { pos: position, col, row, moves: positions },
 				collect: (monitor) => ({
 					isDragging: !!monitor.isDragging(),
 				}),
@@ -56,33 +71,17 @@ const Square: FC<IPiece> = ({
 		}
 		return {
 			type: 'empty',
-			item: { pos: position, col, row, moves },
+			item: { pos: position, col, row, moves: positions },
 			collect: (monitor) => ({
 				isDragging: !!monitor.isDragging(),
 			}),
 		};
 	});
 
-	const movement = (moves: number | IMove[]) => {
-		if (moves === 0) {
-			return true;
-		}
-		return false;
-	};
-
 	const [{ isOver, canDrop }, drop] = useDrop(() => ({
 		accept: ['figure', 'empty'],
-		drop: (item: any) => {
-			if (moves !== 0) {
-				item.moves.forEach((posX: any) => {
-					console.log({ ...posX });
-					if (row === posX.row && col === posX.col) {
-						move([item.row, item.col], [row, col]);
-					}
-				});
-			}
-		},
-		canDrop: () => movement(moves),
+		drop: (item: any) => move([item.row, item.col], [row, col]),
+		canDrop: (item: any) => (item.moves.includes(position) ? true : false),
 		collect: (monitor) => ({
 			isOver: !!monitor.isOver(),
 			canDrop: !!monitor.canDrop(),
@@ -120,7 +119,7 @@ const Square: FC<IPiece> = ({
 					className={
 						!isOver
 							? styles['square__icon']
-							: !isOver && !canDrop
+							: isOver && !canDrop
 							? `${styles['square__icon']} ${styles['square__icon_invalid']}`
 							: `${styles['square__icon']} ${styles['square__icon_valid']}`
 					}
