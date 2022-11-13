@@ -1,5 +1,5 @@
 declare module '@chess-types' {
-	export interface IChessData {
+	interface IChessData {
 		data: [
 			{
 				game: [
@@ -24,5 +24,12 @@ declare module '@chess-types' {
 		col: number;
 		moves: number[] | number;
 		move: (target: number[], dest: number[]) => void;
+	}
+
+	interface IDropItem {
+		position: number;
+		row: number;
+		col: number;
+		moves: number[] | number;
 	}
 }

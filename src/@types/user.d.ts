@@ -1,11 +1,11 @@
 declare module '@user-types' {
-	export interface IUserRegister {
+	interface IUserRegister {
 		name: string;
 		email: string;
 		password: string;
 	}
 
-	export interface IUserResponse {
+	interface IUserResponse {
 		_id: string;
 		fresh: boolean;
 		iat: number;
@@ -18,7 +18,7 @@ declare module '@user-types' {
 		email: string;
 	}
 
-	export interface IUserDetails {
+	interface IUserDetails {
 		id: string;
 		name: string;
 		email: string;

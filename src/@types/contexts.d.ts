@@ -1,13 +1,13 @@
 declare module '@context-types' {
-	export interface DnDChildren {
+	interface DnDChildren {
 		children: React.ReactNode;
 	}
 
-	export interface AuthChildren {
+	interface AuthChildren {
 		children: React.ReactNode;
 	}
 
-	export interface ProtectedRouteProps {
+	interface ProtectedRouteProps {
 		children: JSX.Element;
 	}
 }

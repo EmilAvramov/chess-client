@@ -3,7 +3,7 @@ declare module '@chat-types' {
 	import { Socket } from 'socket.io-client';
 	import { IUserDetails } from '@user-types';
 
-	export interface message {
+	interface message {
 		id: string;
 		user: string;
 		name: string;
@@ -11,20 +11,20 @@ declare module '@chat-types' {
 		time: number;
 	}
 
-	export interface IChat {
+	interface IChat {
 		socket: Socket<ServerToClientEvents, ClientToServerEvents> | undefined;
 		socketID: string;
 		connected: boolean;
 		user: IUserDetails | null;
 	}
 
-	export interface IChatBody {
+	interface IChatBody {
 		messages: message[];
 		messageRef: LegacyRef<HTMLDivElement>;
 		user: IUserDetails | null;
 	}
 
-	export interface IChatFooter {
+	interface IChatFooter {
 		socket: Socket<ServerToClientEvents, ClientToServerEvents> | undefined;
 	}
 }

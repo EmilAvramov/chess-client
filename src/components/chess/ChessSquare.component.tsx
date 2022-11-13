@@ -11,7 +11,7 @@ import Rook from '../../helpers/figures/Rook';
 import styles from '../../styles/components/Chess.module.scss';
 
 import { IBoardObject } from '@board-types';
-import { IPiece } from '@chess-types';
+import { IDropItem, IPiece } from '@chess-types';
 
 const Square: FC<IPiece> = ({
 	position,
@@ -65,29 +65,17 @@ const Square: FC<IPiece> = ({
 
 	const [{ isOver, canDrop }, drop] = useDrop(() => ({
 		accept: ['figure', 'empty'],
-		drop: (item: {
-			position: number;
-			col: number;
-			row: number;
-			moves: number[] | number;
-		}) => {
+		drop: (item: IDropItem) => {
 			move([item.row, item.col], [row, col]);
 		},
-		canDrop: (item: {
-			position: number;
-			col: number;
-			row: number;
-			moves: number[] | number;
-		}) => {
-			console.log(moves)
+		canDrop: (item: IDropItem) => {
 			if (typeof item.moves !== 'number') {
 				if (item.moves.includes(position)) {
 					return true;
 				}
 				return false;
-			} else {
-				return false;
 			}
+			return false;
 		},
 		collect: (monitor) => ({
 			isOver: !!monitor.isOver(),
