@@ -29,35 +29,12 @@ const ChatBody: FC<IChatBody> = ({
 
 			<div className={styles['body__container']}>
 				{messages.map((message: message) => (
-					// value.id % 2 !== 0 || value.id === 0 ? (
-					// 	<div
-					// 		className={styles['body__container_message']}
-					// 		key={value.id}
-					// 	>
-					// 		<p className={styles['message__sender']}>
-					// 			{value.name}
-					// 		</p>
-					// 		<div className={styles['message__content']}>
-					// 			<p>{value.text}</p>
-					// 		</div>
-					// 	</div>
-					// ) : (
-					// 	<div
-					// 		className={styles['body__container_message']}
-					// 		key={value.id}
-					// 	>
-					// 		<p>{value.name}</p>
-					// 		<div className={styles['message__recipient']}>
-					// 			<p>{value.text}</p>
-					// 		</div>
-					// 	</div>
-					// )
 					<div
 						className={styles['body__container_message']}
 						key={message.id}
 					>
 						<p className={styles['message__sender']}>
-							{message.user}
+							{message.name}
 						</p>
 						<div className={styles['message__content']}>
 							<p>{message.message}</p>

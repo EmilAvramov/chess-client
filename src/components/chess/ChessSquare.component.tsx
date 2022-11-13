@@ -65,8 +65,30 @@ const Square: FC<IPiece> = ({
 
 	const [{ isOver, canDrop }, drop] = useDrop(() => ({
 		accept: ['figure', 'empty'],
-		drop: (item: any) => move([item.row, item.col], [row, col]),
-		canDrop: (item: any) => (item.moves.includes(position) ? true : false),
+		drop: (item: {
+			position: number;
+			col: number;
+			row: number;
+			moves: number[] | number;
+		}) => {
+			move([item.row, item.col], [row, col]);
+		},
+		canDrop: (item: {
+			position: number;
+			col: number;
+			row: number;
+			moves: number[] | number;
+		}) => {
+			console.log(moves)
+			if (typeof item.moves !== 'number') {
+				if (item.moves.includes(position)) {
+					return true;
+				}
+				return false;
+			} else {
+				return false;
+			}
+		},
 		collect: (monitor) => ({
 			isOver: !!monitor.isOver(),
 			canDrop: !!monitor.canDrop(),
