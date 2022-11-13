@@ -6,6 +6,7 @@ declare module '@chat-types' {
 	export interface message {
 		id: string;
 		user: string;
+		name: string;
 		message: string;
 		time: number;
 	}

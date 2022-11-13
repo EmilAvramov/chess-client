@@ -9,7 +9,7 @@ declare module '@types-socket' {
 	}
 
 	interface ClientToServerEvents {
-		message: (msg: string, user: string) => void;
+		message: (msg: string, user: string, name: string) => void;
 		getMessages: () => message[];
 		join: (room: string) => void;
 	}

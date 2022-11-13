@@ -11,7 +11,7 @@ const ChatFooter: FC<IChatFooter> = ({ socket }): JSX.Element => {
 
 	const handleSendMessage = (e: any) => {
 		e.preventDefault();
-		socket?.emit('message', message, user!.id);
+		socket?.emit('message', message, user!.id, user!.name);
 		setMessage('');
 	};
 	return (
