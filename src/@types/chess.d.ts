@@ -26,6 +26,11 @@ declare module '@chess-types' {
 		move: (target: number[], dest: number[]) => void;
 	}
 
+	interface ISquare extends IPiece {
+		highlight: boolean;
+		toggle: (moves: number[] | number) => void;
+	}
+
 	interface IDropItem {
 		position: number;
 		row: number;

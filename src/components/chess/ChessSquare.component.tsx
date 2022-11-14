@@ -11,9 +11,9 @@ import Rook from '../../helpers/figures/Rook';
 import styles from '../../styles/components/Chess.module.scss';
 
 import { IBoardObject } from '@board-types';
-import { IDropItem, IPiece } from '@chess-types';
+import { IDropItem, ISquare } from '@chess-types';
 
-const Square: FC<IPiece> = ({
+const Square: FC<ISquare> = ({
 	position,
 	color,
 	type,
@@ -21,6 +21,8 @@ const Square: FC<IPiece> = ({
 	row,
 	move,
 	moves,
+	highlight,
+	toggle,
 }): JSX.Element => {
 	const [background, setBackground] = useState<string>('');
 
@@ -61,14 +63,18 @@ const Square: FC<IPiece> = ({
 				isDragging: !!monitor.isDragging(),
 			}),
 		};
-	}, [move]);
+	}, [move, toggle]);
 
 	const [{ isOver, canDrop }, drop] = useDrop(() => ({
 		accept: ['figure', 'empty'],
-		drop: (item: IDropItem) => move([item.row, item.col], [row, col]),
+		drop: (item: IDropItem) => {
+			move([item.row, item.col], [row, col]);
+			toggle(0);
+		},
 		canDrop: (item: IDropItem) => {
 			if (typeof item.moves !== 'number') {
 				if (item.moves.includes(position)) {
+					toggle(item.moves);
 					return true;
 				}
 				return false;
@@ -88,7 +94,7 @@ const Square: FC<IPiece> = ({
 
 	return (
 		<>
-			{pawns[color] !== undefined ? (
+			{pawns[color] !== undefined && !highlight ? (
 				<div
 					ref={attachRef}
 					onMouseEnter={() => setBackground('green')}
@@ -105,6 +111,15 @@ const Square: FC<IPiece> = ({
 						backgroundSize: '100% 100%',
 						backgroundColor: background,
 					}}
+				/>
+			) : highlight ? (
+				<div
+					ref={drop}
+					className={
+						!canDrop
+							? styles['square__icon_pending']
+							: `${styles['square__icon']} ${styles['square__icon_valid']}`
+					}
 				/>
 			) : (
 				<div
