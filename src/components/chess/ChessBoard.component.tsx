@@ -11,6 +11,8 @@ const ChessBoard: FC<IBoard> = ({ pieces }): JSX.Element => {
 	const toggleHighlight = (moves: number[] | number) => {
 		if (typeof moves !== 'number') {
 			setHighlights(moves);
+		} else {
+			setHighlights([])
 		}
 	};
 

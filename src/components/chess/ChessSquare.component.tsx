@@ -54,6 +54,7 @@ const Square: FC<ISquare> = ({
 				collect: (monitor) => ({
 					isDragging: !!monitor.isDragging(),
 				}),
+				end: () => toggle(0),
 			};
 		}
 		return {
@@ -67,10 +68,7 @@ const Square: FC<ISquare> = ({
 
 	const [{ isOver, canDrop }, drop] = useDrop(() => ({
 		accept: ['figure', 'empty'],
-		drop: (item: IDropItem) => {
-			move([item.row, item.col], [row, col]);
-			toggle(0);
-		},
+		drop: (item: IDropItem) => move([item.row, item.col], [row, col]),
 		canDrop: (item: IDropItem) => {
 			if (typeof item.moves !== 'number') {
 				if (item.moves.includes(position)) {
@@ -104,14 +102,12 @@ const Square: FC<ISquare> = ({
 						!highlight
 							? !isDragging
 								? styles['square__icon']
-								: canDrop 
-								? `${styles['square__icon']} ${styles['square__icon_valid']}`
 								: `${styles['square__icon']} ${styles['square__icon_selected']}`
 							: !isOver
-								? `${styles['square__icon']} ${styles['square__icon_pending']}`
-								: !isOver && canDrop 
-								? `${styles['square__icon']} ${styles['square__icon_invalid']}`
-								: `${styles['square__icon']} ${styles['square__icon_valid']}`
+							? `${styles['square__icon']} ${styles['square__icon_pending']}`
+							: !isDragging
+							? `${styles['square__icon']} ${styles['square__icon_take']}`
+							: `${styles['square__icon']} ${styles['square__icon_invalid']}`
 					}
 					style={{
 						backgroundImage:
@@ -129,10 +125,10 @@ const Square: FC<ISquare> = ({
 								? styles['square__icon_valid']
 								: styles['square__icon_pending']
 							: !isOver
-								? styles['square__icon']
-								: isOver && !canDrop
-									? `${styles['square__icon']} ${styles['square__icon_invalid']}`
-									: `${styles['square__icon']} ${styles['square__icon_valid']}`
+							? styles['square__icon']
+							: isOver && !canDrop
+							? `${styles['square__icon']} ${styles['square__icon_invalid']}`
+							: `${styles['square__icon']} ${styles['square__icon_valid']}`
 					}
 				/>
 			)}
