@@ -112,13 +112,28 @@ const Square: FC<ISquare> = ({
 						backgroundColor: background,
 					}}
 				/>
-			) : highlight ? (
+			) : pawns[color] !== undefined && highlight ? (
+				<div
+					ref={attachRef}
+					className={
+						!isOver
+							? `${styles['square__icon']} ${styles['square__icon_pending']}`
+							: `${styles['square__icon']} ${styles['square__icon_valid']}`
+					}
+					style={{
+						backgroundImage:
+							"url('" + pawns[color]?.[type].iconStyle + "')",
+						backgroundSize: '100% 100%',
+						backgroundColor: background,
+					}}
+				/>
+			) : pawns[color] === undefined && highlight ? (
 				<div
 					ref={drop}
 					className={
-						!canDrop
+						!isOver
 							? styles['square__icon_pending']
-							: `${styles['square__icon']} ${styles['square__icon_valid']}`
+							: styles['square__icon_valid']
 					}
 				/>
 			) : (
