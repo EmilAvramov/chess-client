@@ -24,7 +24,6 @@
 				width: 5vw;
 				border: none;
 				box-sizing: border-box;
-				transform: translate(0, 0);
 			}
 			.square__icon_selected {
 				background-color: none;
@@ -37,7 +36,7 @@
 				background-color: rgba(220, 135, 162, 0.5);
 			}
 			.square__icon_pending {
-				background-color: rgba(199, 220, 135, 0.5);
+				background-color: rgba(230, 234, 102, 0.5);
 			}
 			.square__icon_take {
 				background-color: rgba(218, 150, 40, 0.5);
