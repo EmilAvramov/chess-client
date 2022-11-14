@@ -94,16 +94,24 @@ const Square: FC<ISquare> = ({
 
 	return (
 		<>
-			{pawns[color] !== undefined && !highlight ? (
+			{pawns[color] !== undefined ? (
 				<div
 					ref={attachRef}
 					onMouseEnter={() => setBackground('green')}
 					onDragStartCapture={() => setBackground('')}
 					onMouseLeave={() => setBackground('')}
 					className={
-						!isDragging
-							? styles['square__icon']
-							: `${styles['square__icon']} ${styles['square__icon_selected']}`
+						!highlight
+							? !isDragging
+								? styles['square__icon']
+								: canDrop 
+								? `${styles['square__icon']} ${styles['square__icon_valid']}`
+								: `${styles['square__icon']} ${styles['square__icon_selected']}`
+							: !isOver
+								? `${styles['square__icon']} ${styles['square__icon_pending']}`
+								: !isOver && canDrop 
+								? `${styles['square__icon']} ${styles['square__icon_invalid']}`
+								: `${styles['square__icon']} ${styles['square__icon_valid']}`
 					}
 					style={{
 						backgroundImage:
@@ -111,40 +119,20 @@ const Square: FC<ISquare> = ({
 						backgroundSize: '100% 100%',
 						backgroundColor: background,
 					}}
-				/>
-			) : pawns[color] !== undefined && highlight ? (
-				<div
-					ref={attachRef}
-					className={
-						!isOver
-							? `${styles['square__icon']} ${styles['square__icon_pending']}`
-							: `${styles['square__icon']} ${styles['square__icon_valid']}`
-					}
-					style={{
-						backgroundImage:
-							"url('" + pawns[color]?.[type].iconStyle + "')",
-						backgroundSize: '100% 100%',
-						backgroundColor: background,
-					}}
-				/>
-			) : pawns[color] === undefined && highlight ? (
-				<div
-					ref={drop}
-					className={
-						!isOver
-							? styles['square__icon_pending']
-							: styles['square__icon_valid']
-					}
 				/>
 			) : (
 				<div
 					ref={drop}
 					className={
-						!isOver
-							? styles['square__icon']
-							: isOver && !canDrop
-							? `${styles['square__icon']} ${styles['square__icon_invalid']}`
-							: `${styles['square__icon']} ${styles['square__icon_valid']}`
+						highlight
+							? isOver
+								? styles['square__icon_valid']
+								: styles['square__icon_pending']
+							: !isOver
+								? styles['square__icon']
+								: isOver && !canDrop
+									? `${styles['square__icon']} ${styles['square__icon_invalid']}`
+									: `${styles['square__icon']} ${styles['square__icon_valid']}`
 					}
 				/>
 			)}
