@@ -81,6 +81,8 @@ const Square: FC<ISquare> = ({
 		drag(el);
 	};
 
+	const icon = (icon: string) => "url('" + icon + "')";
+
 	return (
 		<>
 			{pawns[color] !== undefined ? (
@@ -99,8 +101,7 @@ const Square: FC<ISquare> = ({
 							: `${styles['square__icon']} ${styles['square__icon_take']}`
 					}
 					style={{
-						backgroundImage:
-							"url('" + pawns[color]?.[type].iconStyle + "')",
+						backgroundImage: icon(pawns[color]?.[type].iconStyle),
 						backgroundSize: '100% 100%',
 						backgroundColor: background,
 					}}
